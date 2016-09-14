@@ -1,0 +1,2 @@
+class CollectionItem < ApplicationRecord
+end
