@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Code Climate](https://codeclimate.com/github/GeekPark/geekpark/badges/gpa.svg)](https://codeclimate.com/github/GeekPark/geekpark)
+[![Test Coverage](https://codeclimate.com/github/GeekPark/geekpark/badges/coverage.svg)](https://codeclimate.com/github/GeekPark/geekpark/coverage)
 
-Things you may want to cover:
+This is the source code of Geekpark website.
 
-* Ruby version
+## Requirements
 
-* System dependencies
+- Ruby 2.3.1+
+- PostgreSQL 9+
 
-* Configuration
 
-* Database creation
+## Setting up Development Environment
 
-* Database initialization
+Create database users:
 
-* How to run the test suite
+```bash
+$ create_user -d geekpark-dev
+$ create_user -d geekpark-test
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Install required gems:
 
-* Deployment instructions
+```bash
+$ bundle
+```
 
-* ...
+Create database and load the database schema:
+
+```bash
+$ rake db:create
+$ rake db:schema:load
+```
+
+
