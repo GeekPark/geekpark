@@ -12,7 +12,6 @@ default: &default
 development:
   <<: *default
   database: geekpark_dev
-  username: geekpark_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,7 +19,6 @@ development:
 test:
   <<: *default
   database: geekpark_test
-  username: geekpark_test
 
 production:
   <<: *default
