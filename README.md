@@ -12,13 +12,6 @@ This is the source code of Geekpark website.
 
 ## Setting up Development Environment
 
-Create database users:
-
-```bash
-$ create_user -d geekpark-dev
-$ create_user -d geekpark-test
-```
-
 Install required gems:
 
 ```bash
@@ -31,5 +24,3 @@ Create database and load the database schema:
 $ rake db:create
 $ rake db:schema:load
 ```
-
-
