@@ -5,7 +5,7 @@ class Topic < ApplicationRecord
 
   has_many :comments
   has_many :collection_items
-  has_and_belongs_to_many :collections
+  has_many :collections, through: :collection_items
   belongs_to :column
 
   enum state: [:draft, :published]
