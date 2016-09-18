@@ -1,0 +1,20 @@
+language: ruby
+
+rvm:
+  - '2.3.1'
+
+addons:
+  postgresql: '9.5'
+
+cache:
+  bundler: true
+
+sudo: false
+
+install:
+  - bundle install --jobs=3 --retry=3 --without development --path=${BUNDLE_PATH:-vendor/bundle}
+  - bundle exec rake db:create db:schema:load
+
+script:
+  - bundle exec rspec spec
+

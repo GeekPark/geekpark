@@ -1,7 +1,6 @@
-# README
-
 [![Code Climate](https://codeclimate.com/github/GeekPark/geekpark/badges/gpa.svg)](https://codeclimate.com/github/GeekPark/geekpark)
 [![Test Coverage](https://codeclimate.com/github/GeekPark/geekpark/badges/coverage.svg)](https://codeclimate.com/github/GeekPark/geekpark/coverage)
+[![Travis-CI](https://travis-ci.org/GeekPark/geekpark.svg)](https://travis-ci.org/GeekPark/geekpark)
 
 This is the source code of Geekpark website.
 
