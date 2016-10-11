@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/shouya/cant_cant_cant.git
+  revision: 20ab1837e8182f213fd92ee531ea3807848eb509
+  specs:
+    cant_cant_cant (0.1.7)
+      rails (>= 4.2.0)
+
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -44,6 +51,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.1)
+    awesome_print (1.7.0)
+    awesome_rails_console (0.4.0)
+      awesome_print
+      pry-rails
+      railties
     builder (3.2.2)
     byebug (9.0.5)
     codeclimate-test-reporter (0.5.0)
@@ -95,7 +107,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.6.8)
@@ -103,7 +115,7 @@ GEM
       pkg-config (~> 1.1.7)
     pg (0.18.4)
     pkg-config (1.1.7)
-    pry (0.10.3)
+    pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -139,7 +151,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (11.3.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -213,7 +225,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  awesome_rails_console
   byebug
+  cant_cant_cant!
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   factory_girl_rails
@@ -222,11 +236,11 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg
-  pry-rails
   puma (~> 3.0)
   rack-attack
   rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   sidekiq

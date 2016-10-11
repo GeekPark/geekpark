@@ -36,7 +36,13 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rack-attack'
 gem 'sidekiq'
 
+# Serialize JSON for API
 gem 'active_model_serializers', '~> 0.10.0'
+
+# Authentication
+gem 'cant_cant_cant', github: 'shouya/cant_cant_cant'
+
+gem 'redis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +59,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-rails'
+  gem 'awesome_rails_console'
 end
 
 group :test do

@@ -6,15 +6,15 @@ module Rack
 
     def call(env)
       request = Rack::Request.new(env)
-      stub = local_store.get("access_key:#{request.params[:access_key]}")
+      stub = remote_storage.get("access_key:#{request.params[:access_key]}")
       set_params(request, stub) if stub
       @app.call(env)
     end
 
     def set_params(request, stub)
       id, roles = stub.split(':')
-      request.update_param('id', id.to_i)
-      request.update_param('roles', roles.split(','))
+      request.update_param(:user_id, id.to_i)
+      request.update_param(:user_roles, roles.split(','))
     end
 
     def remote_storage
