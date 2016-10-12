@@ -1,4 +1,4 @@
-app/serializers/application_serializer.rbclass CollectionSerializer < ApplicationSerializer
+class CollectionSerializer < ApplicationSerializer
   attributes :id, :title, :description
   attribute :meta, if: :manager?
 
