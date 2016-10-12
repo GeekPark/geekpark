@@ -4,7 +4,7 @@ RSpec.describe Collection, type: :model do
   let!(:collection) { create(:collection, :with_topics) }
 
   describe 'reset_members' do
-    it 'reset members correctlly' do
+    it 'reset members correctly' do
       n = 2
       some_topics = create_list(:topic, n).pluck(:id)
 
@@ -26,7 +26,7 @@ RSpec.describe Collection, type: :model do
 
 
   describe 'add_members' do
-    it 'add members correctlly' do
+    it 'add members correctly' do
       n = 3
       topic = create_list(:topic, n)
       expect {
