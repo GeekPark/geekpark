@@ -53,6 +53,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
