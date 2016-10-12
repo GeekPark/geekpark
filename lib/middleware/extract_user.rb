@@ -13,7 +13,7 @@ module Rack
 
     def set_params(request, stub)
       id, roles = stub.split(':')
-      return if id.blank? || roles.blank?
+      return if id.empty? || roles.empty?
       request.update_param(:user_id, id.to_i)
       request.update_param(:user_roles, roles.split(',').map(&:intern))
     end
