@@ -4,7 +4,7 @@ class Column < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
 
-  has_many :topics, dependent: :restricted_with_exception
+  has_many :topics, dependent: :restrict_with_exception
 
-  enum type: [:normal, :video]
+  enum content_type: [:normal, :video]
 end
