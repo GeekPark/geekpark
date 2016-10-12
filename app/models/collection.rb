@@ -6,4 +6,14 @@ class Collection < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :description
+
+  def reset_members(topic_ids)
+    topics.replace Topic.find(topic_ids)
+    save
+  end
+
+  def add_members(topics_ids)
+    topics << Topic.find(topics_ids)
+    save
+  end
 end

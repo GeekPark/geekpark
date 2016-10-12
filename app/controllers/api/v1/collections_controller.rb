@@ -1,6 +1,7 @@
 module API::V1
   class CollectionsController < APIController
-    before_action :find_collection, only: %i(destroy show)
+    before_action :find_collection,
+                  only: %i(destroy show update reset_members add_members)
 
     def index
       success(Collection.all)
@@ -18,6 +19,19 @@ module API::V1
 
     def show
       success(@collection)
+    end
+
+    def update
+      @collection.update_attributes(collection_params)
+      updated
+    end
+
+    def reset_members
+      @collection.reset_members(params[:topic_ids])
+    end
+
+    def add_members
+      @collection.add_members(params[:topic_ids])
     end
 
     private

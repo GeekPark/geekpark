@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914045255) do
+ActiveRecord::Schema.define(version: 20161012073710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20160914045255) do
     t.hstore   "meta"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_collections_on_deleted_at", using: :btree
     t.index ["meta"], name: "index_collections_on_meta", using: :btree
     t.index ["title"], name: "index_collections_on_title", using: :btree
   end
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(version: 20160914045255) do
     t.integer  "type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_columns_on_deleted_at", using: :btree
     t.index ["meta"], name: "index_columns_on_meta", using: :btree
     t.index ["title"], name: "index_columns_on_title", using: :btree
     t.index ["type"], name: "index_columns_on_type", using: :btree
@@ -55,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160914045255) do
     t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
     t.index ["state"], name: "index_comments_on_state", using: :btree
     t.index ["topic_id"], name: "index_comments_on_topic_id", using: :btree
@@ -75,7 +81,9 @@ ActiveRecord::Schema.define(version: 20160914045255) do
     t.string   "tags",       default: [],                 array: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.datetime "deleted_at"
     t.index ["column_id"], name: "index_topics_on_column_id", using: :btree
+    t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
     t.index ["hidden"], name: "index_topics_on_hidden", using: :btree
     t.index ["meta"], name: "index_topics_on_meta", using: :btree
     t.index ["state"], name: "index_topics_on_state", using: :btree
