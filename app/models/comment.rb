@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :topic
 
   belongs_to :parent, class_name: 'Comment'
