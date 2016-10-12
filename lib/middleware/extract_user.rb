@@ -13,8 +13,9 @@ module Rack
 
     def set_params(request, stub)
       id, roles = stub.split(':')
+      return if id.blank? || roles.blank?
       request.update_param(:user_id, id.to_i)
-      request.update_param(:user_roles, roles.split(','))
+      request.update_param(:user_roles, roles.split(',').map(&:intern))
     end
 
     def remote_storage
