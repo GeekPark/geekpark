@@ -1,0 +1,33 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'config/**/*'
+    - 'spec/**/*'
+
+Style/BlockComments:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/SpaceInsideBrackets:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EmptyLines:
+  Exclude:
+    - 'Gemfile'
+    - 'spec/**/*'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'config/**/*'
+
