@@ -55,6 +55,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
   gem 'guard-rspec', require: false
   gem 'rubocop', require: false
 end
