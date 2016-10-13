@@ -1,6 +1,4 @@
 module RolePredicates
-  include HasCurrentRoles
-
   def manager?
     :manager.in? current_roles
   end
