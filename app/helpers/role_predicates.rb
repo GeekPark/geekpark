@@ -1,13 +1,11 @@
 module RolePredicates
-  def manager?
-    :manager.in? current_roles
+  def self.def_predicate(role)
+    define_method "#{role}?" do
+      role.intern.in? current_roles
+    end
   end
 
-  def admin?
-    :admin.in? current_roles
-  end
-
-  def developer?
-    :developer.in? current_roles
-  end
+  def_predicate :user
+  def_predicate :manager
+  def_predicate :admin
 end

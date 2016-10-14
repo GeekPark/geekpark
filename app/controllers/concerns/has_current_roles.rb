@@ -6,6 +6,8 @@ module HasCurrentRoles
   end
 
   def current_roles
-    params[:user_roles] || Role.default_roles
+    roles = params[:user_roles]&.map(&:intern) || []
+    roles.concat(Role.default_roles)
+    roles
   end
 end
