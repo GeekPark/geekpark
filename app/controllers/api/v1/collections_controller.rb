@@ -8,7 +8,7 @@ module API::V1
     end
 
     def create
-      collection = Collection.create(*collection_params)
+      collection = Collection.create(collection_params)
       created(collection)
     end
 
@@ -41,8 +41,11 @@ module API::V1
     end
 
     def collection_params
-      params.require(:title)
-            .permit(:description, :banner, :banner_mobile, :meta)
+      params.permit(:title,
+                    :description,
+                    :banner,
+                    :banner_mobile,
+                    meta: {})
     end
   end
 end
