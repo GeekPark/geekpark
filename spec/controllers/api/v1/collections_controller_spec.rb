@@ -33,7 +33,7 @@ describe API::V1::CollectionsController, type: :controller do
       expect(result).to be_an(Hash)
 
       id = result['id']
-      expect(id).to be_an(Fixnum)
+      expect(id).to be_an(Integer)
 
       collection = Collection.find(id)
       expect(collection).to be_present
