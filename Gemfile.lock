@@ -290,6 +290,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   sidekiq
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

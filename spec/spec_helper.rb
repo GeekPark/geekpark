@@ -18,7 +18,10 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'codeclimate-test-reporter'
+require 'simplecov'
+
 CodeClimate::TestReporter.start
+SimpleCov.start
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
