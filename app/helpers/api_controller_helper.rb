@@ -11,6 +11,6 @@ module APIControllerHelper
   end
 
   def updated
-    head(status: :no_content)
+    head(:no_content)
   end
 end
