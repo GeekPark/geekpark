@@ -6,6 +6,11 @@ module RolePredicates
   end
 
   def_predicate :user
-  def_predicate :manager
+  def_predicate :editor
   def_predicate :admin
+  def_predicate :dev
+
+  def manager?
+    editor? || admin? || dev?
+  end
 end
