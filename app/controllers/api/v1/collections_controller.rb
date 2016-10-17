@@ -37,7 +37,7 @@ module API::V1
     private
 
     def find_collection
-      @collection = Collection.find(params[:id])
+      @collection = Collection.find(params[:id] || params[:collection_id])
     end
 
     def collection_params
@@ -45,7 +45,7 @@ module API::V1
                     :description,
                     :banner,
                     :banner_mobile,
-                    meta: {})
+                    meta: Collection::META_VARIABLES.keys)
     end
   end
 end
