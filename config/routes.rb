@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, except: [:new, :edit] do
       resources :collections do
-        post :reset_members, :add_members
+        post :members, to: 'collections#add_members'
+        put :members,  to: 'collections#reset_members'
       end
     end
   end
