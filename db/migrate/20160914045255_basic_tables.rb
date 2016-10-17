@@ -52,7 +52,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.hstore :meta, index: true
 
       # video/article
-      t.integer :type, index: true
+      t.integer :content_type, index: true
 
       t.timestamps
     end
