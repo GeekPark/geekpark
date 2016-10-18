@@ -34,4 +34,8 @@ class Column < ApplicationRecord
     management_paginate_per: '10',
     theme_color: '#ff0000'
   }.freeze
+
+  def add_members(ids)
+    Topic.where(id: ids).update_all(column_id: id)
+  end
 end

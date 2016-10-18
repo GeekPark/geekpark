@@ -26,10 +26,6 @@ module API::V1
       updated
     end
 
-    def reset_members
-      @column.reset_members(params[:topic_ids])
-    end
-
     def add_members
       @column.add_members(params[:topic_ids])
     end

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
         post :members, to: 'collections#add_members'
         put :members,  to: 'collections#reset_members'
       end
+
+      resources :columns do
+        post :members, to: 'columns#add_members'
+      end
     end
   end
 end
