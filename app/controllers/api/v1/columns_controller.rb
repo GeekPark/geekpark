@@ -13,7 +13,7 @@ module API::V1
     end
 
     def destroy
-      column.destroy
+      @column.destroy
       updated
     end
 

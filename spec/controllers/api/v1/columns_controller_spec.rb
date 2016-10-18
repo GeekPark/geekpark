@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::ColumnsController, type: :controller do
-  let(:column) { create(:column) }
-
   it_behaves_like(:indicable, Column, as: :editor)
   it_behaves_like(:creatable, Column, as: :admin) do
     let(:query) {
@@ -27,4 +25,6 @@ RSpec.describe API::V1::ColumnsController, type: :controller do
       ]
     }
   end
+
+  it_behaves_like(:destructible, :column, as: :admin)
 end
