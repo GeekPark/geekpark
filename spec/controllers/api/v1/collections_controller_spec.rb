@@ -4,6 +4,7 @@ describe API::V1::CollectionsController, type: :controller do
   let(:collections) { create_list(:collection, 3) }
 
   it_behaves_like(:indicable, Collection, as: :editor)
+  it_behaves_like(:destructible, :collection, as: :editor)
   it_behaves_like(:creatable, Collection, as: :editor) do
     let(:query) {
       Hash[
@@ -11,28 +12,6 @@ describe API::V1::CollectionsController, type: :controller do
         description: FFaker::LoremCN.words(2).join
       ]
     }
-  end
-
-  describe 'destroy' do
-    it 'should destroy collection successfully' do
-      c = collections.first
-      expect {
-        delete :destroy, params: { id: c.id, **as(:editor) }
-        expect(response).to be_success
-      }.to change { Collection.count }.by(-1)
-    end
-
-    it 'should not destroy collection' do
-      c = collections.first
-      expect {
-        delete :destroy, params: { id: c.id }
-        expect(response).not_to be_success
-
-        expect {
-          delete :destroy, params: { id: c.id + 999, **as(:admin) }
-        }.to raise_error(ActiveRecord::RecordNotFound)
-      }.to change { Collection.count }.by(0)
-    end
   end
 
   describe 'show' do
