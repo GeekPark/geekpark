@@ -3,49 +3,21 @@ require 'rails_helper'
 describe API::V1::CollectionsController, type: :controller do
   let(:collections) { create_list(:collection, 3) }
 
-  describe 'index' do
-    it 'should return correct collection items' do
-      collections # force
-
-      get :index, params: as(:editor)
-      expect(response).to be_success
-      expect(result).to be_an(Array)
-      expect(result).to have(3).items
-
-      expected_titles = result.map { |x| x['title'] }
-      actual_titles = collections.pluck(:title)
-      expect(expected_titles).to match_array(actual_titles)
-    end
-  end
-
-  describe 'create' do
-    it 'should create collection successfully' do
-      query = {
+  it_behaves_like(:indicable, Collection)
+  it_behaves_like(:creatable, Collection, as: :editor) do
+    let(:query) {
+      Hash[
         title: FFaker::LoremCN.words(2).join,
         description: FFaker::LoremCN.words(2).join
-      }
-
-      expect {
-        post :create, format: :json, params: { **query, **as(:admin) }
-        expect(response).to be_success
-      }.to change { Collection.count }.by(1)
-
-      expect(result).to be_an(Hash)
-
-      id = result['id']
-      expect(id).to be_an(Integer)
-
-      collection = Collection.find(id)
-      expect(collection).to be_present
-      expect(collection.attributes.symbolize_keys).to include(query)
-    end
+      ]
+    }
   end
 
   describe 'destroy' do
     it 'should destroy collection successfully' do
       c = collections.first
       expect {
-        delete :destroy, params: { id: c.id, **as(:admin) }
+        delete :destroy, params: { id: c.id, **as(:editor) }
         expect(response).to be_success
       }.to change { Collection.count }.by(-1)
     end
@@ -79,30 +51,16 @@ describe API::V1::CollectionsController, type: :controller do
     end
   end
 
-  describe 'update' do
-    it 'update collection correctly' do
-      c = collections.first
-      record = {
-        id: c.id,
+  it_behaves_like(:updatable, :collection, as: :admin) do
+    let(:query) {
+      Hash[
         title: '1',
         description: '2',
         banner: '3',
         banner_mobile: '4',
         meta: { 'paginate_per' => '100' }
-      }
-      put :update, params: { **record, **as(:admin), format: :json }
-
-      expect(response).to be_no_content
-      c.reload
-
-      record.each do |key, val|
-        if val.is_a? Hash
-          expect(c[key]).to include(val)
-        else
-          expect(c[key]).to eq(val)
-        end
-      end
-    end
+      ]
+    }
   end
 
   describe 'add_members' do
