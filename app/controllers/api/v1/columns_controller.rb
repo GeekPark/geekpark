@@ -37,15 +37,14 @@ module API::V1
     private
 
     def find_column
-      @column = Collection.find(params[:id] || params[:collection_id])
+      @column = Column.find(params[:id] || params[:column_id])
     end
 
-    def collection_params
+    def column_params
       params.permit(:title,
                     :description,
-                    :banner,
-                    :banner_mobile,
-                    meta: Collection::META_VARIABLES.keys)
+                    :content_type,
+                    meta: Column::META_VARIABLES.keys)
     end
   end
 end
