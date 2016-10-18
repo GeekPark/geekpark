@@ -20,6 +20,7 @@
 #
 
 class Collection < ApplicationRecord
+  include HasMeta
   acts_as_paranoid
 
   has_many :collection_items, dependent: :destroy
@@ -27,8 +28,6 @@ class Collection < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :description
-
-  before_save :fill_in_default_meta
 
   META_VARIABLES = {
     paginate_per: '10',
@@ -44,15 +43,5 @@ class Collection < ApplicationRecord
   def add_members(topics_ids)
     topics << Topic.find(topics_ids)
     save
-  end
-
-  private
-
-  def fill_in_default_meta
-    self.meta = {} if meta.nil?
-    META_VARIABLES.each do |var, value|
-      next if meta[var].present?
-      meta[var] = value
-    end
   end
 end
