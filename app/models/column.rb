@@ -37,6 +37,7 @@ class Column < ApplicationRecord
   }.freeze
 
   def add_members(ids)
-    Topic.where(id: ids).update_all(column_id: id)
+    topics << Topic.find(ids)
+    save
   end
 end
