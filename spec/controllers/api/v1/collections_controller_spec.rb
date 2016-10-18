@@ -3,7 +3,7 @@ require 'rails_helper'
 describe API::V1::CollectionsController, type: :controller do
   let(:collections) { create_list(:collection, 3) }
 
-  it_behaves_like(:indicable, Collection)
+  it_behaves_like(:indicable, Collection, as: :editor)
   it_behaves_like(:creatable, Collection, as: :editor) do
     let(:query) {
       Hash[
