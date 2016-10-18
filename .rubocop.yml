@@ -34,3 +34,12 @@ Metrics/LineLength:
   Exclude:
     - 'config/**/*'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*'
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/**/*'
+
+
+
