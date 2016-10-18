@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe API::V1::ColumnsController, type: :controller do
   it_behaves_like(:indicable, Column, as: :editor)
   it_behaves_like(:destructible, :column, as: :admin)
+  it_behaves_like(:showable, :column, as: :visitor)
   it_behaves_like(:creatable, Column, as: :admin) do
     let(:query) {
       Hash[
