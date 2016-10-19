@@ -26,7 +26,7 @@ class Column < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
 
-  has_many :topics, dependent: :restrict_with_exception
+  has_many :posts, dependent: :restrict_with_exception
 
   enum content_type: [:normal, :video]
 
@@ -36,7 +36,7 @@ class Column < ApplicationRecord
     theme_color: '#ff0000'
   }.freeze
 
-  def add_members(ids)
-    topics << Topic.find(ids)
+  def add_members(post_ids)
+    posts << Post.find(post_ids)
   end
 end

@@ -24,7 +24,7 @@ class Collection < ApplicationRecord
   acts_as_paranoid
 
   has_many :collection_items, dependent: :destroy
-  has_many :topics, through: :collection_items
+  has_many :posts, through: :collection_items
 
   validates_presence_of :title
   validates_presence_of :description
@@ -35,11 +35,11 @@ class Collection < ApplicationRecord
     tag_visibility: 'false'
   }.freeze
 
-  def reset_members(topic_ids)
-    topics.replace Topic.find(topic_ids)
+  def reset_members(post_ids)
+    posts.replace Post.find(post_ids)
   end
 
-  def add_members(topics_ids)
-    topics << Topic.find(topics_ids)
+  def add_members(post_ids)
+    posts << Post.find(post_ids)
   end
 end

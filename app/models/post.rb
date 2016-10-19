@@ -29,7 +29,7 @@
 #  index_topics_on_title       (title)
 #
 
-class Topic < ApplicationRecord
+class Post < ApplicationRecord
   acts_as_paranoid
 
   validates_presence_of :title

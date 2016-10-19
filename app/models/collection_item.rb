@@ -14,5 +14,5 @@
 
 class CollectionItem < ApplicationRecord
   belongs_to :collection
-  belongs_to :topic
+  belongs_to :post
 end
