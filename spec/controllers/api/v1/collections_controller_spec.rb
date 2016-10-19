@@ -45,38 +45,38 @@ describe API::V1::CollectionsController, type: :controller do
   describe 'add_members' do
     it 'add members correctly' do
       n = 3
-      c = create(:collection, :with_topics)
-      topics = create_list(:topic, n)
+      c = create(:collection, :with_posts)
+      posts = create_list(:post, n)
 
       expect {
         post :add_members,
              params: {
                collection_id: c.id,
-               topic_ids: topics.pluck(:id),
+               post_ids: posts.pluck(:id),
                **as(:editor),
                format: :json
              }
-      }.to change { c.topics.count }.by(n)
-      expect(c.topics.pluck(:id)).to include(*topics.pluck(:id))
+      }.to change { c.posts.count }.by(n)
+      expect(c.posts.pluck(:id)).to include(*posts.pluck(:id))
     end
   end
 
   describe 'reset_members' do
     it 'reset members correctly' do
       n = 4
-      c = create(:collection, :with_topics)
-      topics = create_list(:topic, n)
+      c = create(:collection, :with_posts)
+      posts = create_list(:post, n)
 
       expect {
         post :reset_members,
              params: {
                collection_id: c.id,
-               topic_ids: topics.pluck(:id),
+               post_ids: posts.pluck(:id),
                **as(:editor),
                format: :json
              }
-      }.to change { c.topics.count }.to(n)
-      expect(c.topics.pluck(:id)).to match_array(topics.pluck(:id))
+      }.to change { c.posts.count }.to(n)
+      expect(c.posts.pluck(:id)).to match_array(posts.pluck(:id))
     end
   end
 end

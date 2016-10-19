@@ -6,22 +6,22 @@ RSpec.describe Column, type: :model do
   describe 'add members' do
     it 'correctly add members' do
       n = 3
-      create_list(:topic, 3, column: column)
-      topics = create_list(:topic, n)
+      create_list(:post, 3, column: column)
+      posts = create_list(:post, n)
       expect {
-        column.add_members(topics.pluck(:id))
-      }.to change { column.topics.count }.by(n)
-      expect(column.topics).to include(*topics)
+        column.add_members(posts.pluck(:id))
+      }.to change { column.posts.count }.by(n)
+      expect(column.posts).to include(*posts)
     end
 
     it 'denies invalid members' do
-      create_list(:topic, 3, column: column)
-      topics = create_list(:topic, 4)
+      create_list(:post, 3, column: column)
+      posts = create_list(:post, 4)
       expect {
         expect {
-          column.add_members([*topics.pluck(:id), 999_999_999 + 1])
+          column.add_members([*posts.pluck(:id), 999_999_999 + 1])
         }.to raise_error(ActiveRecord::RecordNotFound)
-      }.not_to change { column.topics.count }
+      }.not_to change { column.posts.count }
     end
   end
 end

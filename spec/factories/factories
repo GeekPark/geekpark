@@ -1,0 +1,7 @@
+  /Users/shou/Dropbox/project/geekpark/spec/factories:
+  total used in directory 12K available 4292912573
+  drwxr-xr-x 2 shou staff 170 Oct 19 15:42 .
+  drwxr-xr-x 8 shou staff 340 Oct 19 15:30 ..
+  -rw-r--r-- 1 shou staff 218 Oct 19 15:42 collections.rb
+  -rw-r--r-- 1 shou staff 168 Oct 19 15:30 columns.rb
+  -rw-r--r-- 1 shou staff 262 Oct 19 15:41 posts.rb

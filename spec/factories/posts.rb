@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :topic do
+  factory :post do
     title { FFaker::LoremCN.words(3).join }
     column
     content { FFaker::LoremCN.paragraph }
