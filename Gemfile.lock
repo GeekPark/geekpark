@@ -50,6 +50,9 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (2.7.1)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 12.0)
     arel (7.1.1)
     ast (2.2.0)
     awesome_print (1.7.0)
@@ -267,6 +270,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  annotate
   awesome_rails_console
   byebug
   cant_cant_cant!

@@ -41,14 +41,14 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.string   "title"
     t.string   "description"
     t.hstore   "meta"
-    t.integer  "type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "content_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.datetime "deleted_at"
+    t.index ["content_type"], name: "index_columns_on_content_type", using: :btree
     t.index ["deleted_at"], name: "index_columns_on_deleted_at", using: :btree
     t.index ["meta"], name: "index_columns_on_meta", using: :btree
     t.index ["title"], name: "index_columns_on_title", using: :btree
-    t.index ["type"], name: "index_columns_on_type", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|

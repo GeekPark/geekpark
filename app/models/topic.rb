@@ -1,3 +1,34 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  content    :text
+#  abstract   :text
+#  meta       :hstore
+#  source     :string
+#  link       :string
+#  picture    :string
+#  column_id  :integer
+#  state      :integer
+#  hidden     :boolean          default(FALSE)
+#  tags       :string           default([]), is an Array
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  deleted_at :datetime
+#
+# Indexes
+#
+#  index_topics_on_column_id   (column_id)
+#  index_topics_on_deleted_at  (deleted_at)
+#  index_topics_on_hidden      (hidden)
+#  index_topics_on_meta        (meta)
+#  index_topics_on_state       (state)
+#  index_topics_on_tags        (tags)
+#  index_topics_on_title       (title)
+#
+
 class Topic < ApplicationRecord
   acts_as_paranoid
 

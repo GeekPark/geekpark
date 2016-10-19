@@ -6,9 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'rspec/collection_matchers'
-Dir[Rails.root.join('spec/helpers/**/*.rb')].each do |f|
-  require f
-end
+Dir[Rails.root.join('spec/helpers/**/*.rb'),
+    Rails.root.join('spec/shared/**/*.rb')].each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -40,6 +39,7 @@ RSpec.configure do |config|
   config.include APIHelper
   config.include AccessKeyHelper
   config.include RoleHelper
+  config.include ModelHelper
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
