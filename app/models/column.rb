@@ -38,6 +38,5 @@ class Column < ApplicationRecord
 
   def add_members(ids)
     topics << Topic.find(ids)
-    save
   end
 end
