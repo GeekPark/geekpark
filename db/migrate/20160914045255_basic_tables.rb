@@ -11,7 +11,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       end
     end
 
-    create_table :topics do |t|
+    create_table :posts do |t|
       t.string :title, index: true
 
       t.text :content
@@ -39,7 +39,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :username, index: true
       t.integer :state, index: true
 
-      t.references :topic, index: true
+      t.references :post, index: true
       t.references :parent, index: true
 
       t.timestamps
@@ -59,7 +59,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
     create_table :collection_items do |t|
       t.references :collection, index: true
-      t.references :topic, index: true
+      t.references :post, index: true
     end
 
     create_table :collections do |t|
