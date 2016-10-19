@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: topics
+# Table name: posts
 #
 #  id         :integer          not null, primary key
 #  title      :string
@@ -20,13 +20,13 @@
 #
 # Indexes
 #
-#  index_topics_on_column_id   (column_id)
-#  index_topics_on_deleted_at  (deleted_at)
-#  index_topics_on_hidden      (hidden)
-#  index_topics_on_meta        (meta)
-#  index_topics_on_state       (state)
-#  index_topics_on_tags        (tags)
-#  index_topics_on_title       (title)
+#  index_posts_on_column_id   (column_id)
+#  index_posts_on_deleted_at  (deleted_at)
+#  index_posts_on_hidden      (hidden)
+#  index_posts_on_meta        (meta)
+#  index_posts_on_state       (state)
+#  index_posts_on_tags        (tags)
+#  index_posts_on_title       (title)
 #
 
 class Post < ApplicationRecord
