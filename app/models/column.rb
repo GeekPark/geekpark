@@ -30,13 +30,12 @@ class Column < ApplicationRecord
 
   enum content_type: [:normal, :video]
 
-  Column::META_VARIABLES = {
+  META_VARIABLES = {
     paginate_per: '20',
     management_paginate_per: '10',
     theme_color: '#ff0000'
   }.freeze
 
-  def add_members(post_ids)
-    posts << Post.find(post_ids)
-  end
+  include HasAddMembers
+  def_add_members into: :posts
 end

@@ -21,6 +21,7 @@
 
 class Collection < ApplicationRecord
   include HasMeta
+
   acts_as_paranoid
 
   has_many :collection_items, dependent: :destroy
@@ -35,11 +36,8 @@ class Collection < ApplicationRecord
     tag_visibility: 'false'
   }.freeze
 
-  def reset_members(post_ids)
-    posts.replace Post.find(post_ids)
-  end
-
-  def add_members(post_ids)
-    posts << Post.find(post_ids)
-  end
+  include HasAddMembers
+  include HasResetMembers
+  def_add_members into: :posts
+  def_reset_members into: :posts
 end

@@ -91,4 +91,21 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.index ["title"], name: "index_posts_on_title", using: :btree
   end
 
+  create_table "topic_items", force: :cascade do |t|
+    t.integer "topic_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_topic_items_on_post_id", using: :btree
+    t.index ["topic_id"], name: "index_topic_items_on_topic_id", using: :btree
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.hstore   "meta"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["meta"], name: "index_topics_on_meta", using: :btree
+    t.index ["title"], name: "index_topics_on_title", using: :btree
+  end
+
 end
