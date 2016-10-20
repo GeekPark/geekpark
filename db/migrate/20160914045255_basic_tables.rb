@@ -57,6 +57,20 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :topic_items do |t|
+      t.references :topic, index: true
+      t.references :post, index: true
+    end
+
+    create_table :topics do |t|
+      t.string :title, index: true
+      t.string :description
+
+      t.hstore :meta, index: true
+
+      t.timestamps
+    end
+
     create_table :collection_items do |t|
       t.references :collection, index: true
       t.references :post, index: true
