@@ -32,19 +32,19 @@ RSpec.describe API::V1::ColumnsController, type: :controller do
     it 'adds members successfully' do
       n = 3
       column = create(:column)
-      topics = create_list(:topic, n)
+      posts = create_list(:post, n)
 
       expect {
         post :add_members,
              params: {
                column_id: column.id,
-               topic_ids: topics.pluck(:id),
+               post_ids: posts.pluck(:id),
                **as(:editor),
                format: :json
              }
         expect(response).to be_no_content
-      }.to change { column.topics.count }.by(n)
-      expect(column.topics).to include(*topics)
+      }.to change { column.posts.count }.by(n)
+      expect(column.posts).to include(*posts)
     end
   end
 end

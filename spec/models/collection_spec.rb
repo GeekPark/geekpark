@@ -1,26 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Collection, type: :model do
-  let!(:collection) { create(:collection, :with_topics) }
+  let!(:collection) { create(:collection, :with_posts) }
 
   describe 'reset_members' do
     it 'reset members correctly' do
       n = 2
-      some_topics = create_list(:topic, n).pluck(:id)
+      some_posts = create_list(:post, n).pluck(:id)
 
-      collection.reset_members(some_topics)
+      collection.reset_members(some_posts)
 
-      expect(collection.topics.count).to eq(n)
-      expect(collection.topics.pluck(:id)).to match_array(some_topics)
+      expect(collection.posts.count).to eq(n)
+      expect(collection.posts.pluck(:id)).to match_array(some_posts)
     end
 
     it 'reject invalid members' do
-      topic = create(:topic)
+      post = create(:post)
       expect {
         expect {
-          collection.reset_members([topic.id, 999_999])
+          collection.reset_members([post.id, 999_999])
         }.to raise_error(ActiveRecord::RecordNotFound)
-      }.not_to change { collection.topics.count }
+      }.not_to change { collection.posts.count }
     end
   end
 
@@ -28,19 +28,19 @@ RSpec.describe Collection, type: :model do
   describe 'add_members' do
     it 'add members correctly' do
       n = 3
-      topic = create_list(:topic, n)
+      post = create_list(:post, n)
       expect {
-        collection.add_members([topic.pluck(:id)])
-      }.to change { collection.topics.count }.by(3)
+        collection.add_members([post.pluck(:id)])
+      }.to change { collection.posts.count }.by(3)
     end
 
     it 'reject invalid members' do
-      topic = create(:topic)
+      post = create(:post)
       expect {
         expect {
-          collection.add_members([topic.id, 999_999])
+          collection.add_members([post.id, 999_999])
         }.to raise_error(ActiveRecord::RecordNotFound)
-      }.not_to change { collection.topics.count }
+      }.not_to change { collection.posts.count }
     end
   end
 end

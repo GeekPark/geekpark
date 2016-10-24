@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20161012073710) do
 
   create_table "collection_items", force: :cascade do |t|
     t.integer "collection_id"
-    t.integer "topic_id"
+    t.integer "post_id"
     t.index ["collection_id"], name: "index_collection_items_on_collection_id", using: :btree
-    t.index ["topic_id"], name: "index_collection_items_on_topic_id", using: :btree
+    t.index ["post_id"], name: "index_collection_items_on_post_id", using: :btree
   end
 
   create_table "collections", force: :cascade do |t|
@@ -55,19 +55,19 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.string   "content"
     t.string   "username"
     t.integer  "state"
-    t.integer  "topic_id"
+    t.integer  "post_id"
     t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
+    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["state"], name: "index_comments_on_state", using: :btree
-    t.index ["topic_id"], name: "index_comments_on_topic_id", using: :btree
     t.index ["username"], name: "index_comments_on_username", using: :btree
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.text     "abstract"
@@ -82,12 +82,29 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
-    t.index ["column_id"], name: "index_topics_on_column_id", using: :btree
-    t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
-    t.index ["hidden"], name: "index_topics_on_hidden", using: :btree
+    t.index ["column_id"], name: "index_posts_on_column_id", using: :btree
+    t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
+    t.index ["hidden"], name: "index_posts_on_hidden", using: :btree
+    t.index ["meta"], name: "index_posts_on_meta", using: :btree
+    t.index ["state"], name: "index_posts_on_state", using: :btree
+    t.index ["tags"], name: "index_posts_on_tags", using: :btree
+    t.index ["title"], name: "index_posts_on_title", using: :btree
+  end
+
+  create_table "topic_items", force: :cascade do |t|
+    t.integer "topic_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_topic_items_on_post_id", using: :btree
+    t.index ["topic_id"], name: "index_topic_items_on_topic_id", using: :btree
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.hstore   "meta"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["meta"], name: "index_topics_on_meta", using: :btree
-    t.index ["state"], name: "index_topics_on_state", using: :btree
-    t.index ["tags"], name: "index_topics_on_tags", using: :btree
     t.index ["title"], name: "index_topics_on_title", using: :btree
   end
 

@@ -26,17 +26,16 @@ class Column < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
 
-  has_many :topics, dependent: :restrict_with_exception
+  has_many :posts, dependent: :restrict_with_exception
 
   enum content_type: [:normal, :video]
 
-  Column::META_VARIABLES = {
+  META_VARIABLES = {
     paginate_per: '20',
     management_paginate_per: '10',
     theme_color: '#ff0000'
   }.freeze
 
-  def add_members(ids)
-    topics << Topic.find(ids)
-  end
+  include HasMembers
+  def_add_members field: :posts
 end

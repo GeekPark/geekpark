@@ -3,8 +3,8 @@ FactoryGirl.define do
     title { FFaker::LoremCN.words(2).join }
     description { FFaker::LoremCN.sentence }
 
-    trait :with_topics do
-      topics { create_list(:topic, 3) }
+    trait :with_posts do
+      posts { create_list(:post, 3) }
     end
   end
 end

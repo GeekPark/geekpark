@@ -27,7 +27,7 @@ module API::V1
     end
 
     def add_members
-      @column.add_members(params[:topic_ids])
+      @column.add_members(params[:post_ids])
     end
 
     private

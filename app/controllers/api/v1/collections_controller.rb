@@ -27,11 +27,11 @@ module API::V1
     end
 
     def reset_members
-      @collection.reset_members(params[:topic_ids])
+      @collection.reset_members(params[:post_ids])
     end
 
     def add_members
-      @collection.add_members(params[:topic_ids])
+      @collection.add_members(params[:post_ids])
     end
 
     private

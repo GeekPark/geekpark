@@ -21,10 +21,11 @@
 
 class Collection < ApplicationRecord
   include HasMeta
+
   acts_as_paranoid
 
   has_many :collection_items, dependent: :destroy
-  has_many :topics, through: :collection_items
+  has_many :posts, through: :collection_items
 
   validates_presence_of :title
   validates_presence_of :description
@@ -35,11 +36,7 @@ class Collection < ApplicationRecord
     tag_visibility: 'false'
   }.freeze
 
-  def reset_members(topic_ids)
-    topics.replace Topic.find(topic_ids)
-  end
-
-  def add_members(topics_ids)
-    topics << Topic.find(topics_ids)
-  end
+  include HasMembers
+  def_add_members field: :posts
+  def_reset_members field: :posts
 end

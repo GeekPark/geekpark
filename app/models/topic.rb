@@ -2,52 +2,35 @@
 #
 # Table name: topics
 #
-#  id         :integer          not null, primary key
-#  title      :string
-#  content    :text
-#  abstract   :text
-#  meta       :hstore
-#  source     :string
-#  link       :string
-#  picture    :string
-#  column_id  :integer
-#  state      :integer
-#  hidden     :boolean          default(FALSE)
-#  tags       :string           default([]), is an Array
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  deleted_at :datetime
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :string
+#  meta        :hstore
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
-#  index_topics_on_column_id   (column_id)
-#  index_topics_on_deleted_at  (deleted_at)
-#  index_topics_on_hidden      (hidden)
-#  index_topics_on_meta        (meta)
-#  index_topics_on_state       (state)
-#  index_topics_on_tags        (tags)
-#  index_topics_on_title       (title)
+#  index_topics_on_meta   (meta)
+#  index_topics_on_title  (title)
 #
 
 class Topic < ApplicationRecord
+  include HasMeta
   acts_as_paranoid
 
   validates_presence_of :title
-  validates_presence_of :column
-  validates_presence_of :state
+  validates_presence_of :description
 
-  has_many :comments, dependent: :destroy
-  has_many :collection_items, dependent: :destroy
-  has_many :collections, through: :collection_items
-  belongs_to :column
+  has_many :topic_items, dependent: :destroy
+  has_many :posts, through: :collection_items
 
-  enum state: [:draft, :published]
+  META_VARIABLES = {
+    paginate_per: '20',
+    management_paginate_per: '10',
+    theme_color: '#ff0000'
+  }.freeze
 
-  def article?
-    !video?
-  end
-
-  def video?
-    meta['video_provider'].present?
-  end
+  include HasMembers
+  def_add_members field: :posts
 end
