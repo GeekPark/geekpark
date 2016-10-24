@@ -34,6 +34,10 @@ module API::V1
     def post_params
       params.permit(:title,
                     :content,
+                    :abstract,
+                    :source,
+                    :picture,
+                    :tags,
                     :column_id,
                     :state,
                     meta: Post::META_VARIABLES.keys)
