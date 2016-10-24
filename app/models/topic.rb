@@ -31,6 +31,6 @@ class Topic < ApplicationRecord
     theme_color: '#ff0000'
   }.freeze
 
-  include HasAddMembers
-  def_add_members into: :posts
+  include HasMembers
+  def_add_members field: :posts
 end

@@ -36,8 +36,7 @@ class Collection < ApplicationRecord
     tag_visibility: 'false'
   }.freeze
 
-  include HasAddMembers
-  include HasResetMembers
-  def_add_members into: :posts
-  def_reset_members into: :posts
+  include HasMembers
+  def_add_members field: :posts
+  def_reset_members field: :posts
 end

@@ -18,8 +18,7 @@ engines:
       - ruby
       - javascript
     exclude_fingerprints:
-    - c6a87e201524a88b1787c8d2a41d54f0
-    - 9115c821423dcaa2a62081cf99e9b61c
+    - 6f953af62d9ecb5d1be0f894f27eee16
   eslint:
     enabled: true
     config:
