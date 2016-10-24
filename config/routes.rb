@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :columns do
         post :members, to: 'columns#add_members'
       end
+
+      resources :posts
     end
   end
 end

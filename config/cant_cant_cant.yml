@@ -18,6 +18,13 @@ visitor: &visitor
   api/v1/columns#update: deny
   api/v1/columns#add_members: deny
 
+  api/v1/posts#show: allow
+
+  api/v1/posts#create: deny
+  api/v1/posts#index: deny
+  api/v1/posts#destroy: deny
+  api/v1/posts#update: deny
+
 user: &user {}
 
 editor: &editor
@@ -29,6 +36,11 @@ editor: &editor
 
   api/v1/columns#index: allow
   api/v1/columns#add_members: allow
+
+  api/v1/posts#create: allow
+  api/v1/posts#index: allow
+  api/v1/posts#destroy: allow
+  api/v1/posts#update: allow
 
 admin: &admin
   api/v1/collections#update: allow

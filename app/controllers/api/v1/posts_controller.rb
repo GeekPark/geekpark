@@ -1,7 +1,6 @@
 module API::V1
   class PostsController < APIController
-    before_action :find_post,
-                  only: %i(destroy show update reset_members add_members)
+    before_action :find_post, only: %i(destroy show update)
 
     def index
       success(Post.all)
@@ -38,8 +37,9 @@ module API::V1
 
     def post_params
       params.permit(:title,
-                    :description,
-                    :content_type,
+                    :content,
+                    :column_id,
+                    :state,
                     meta: Post::META_VARIABLES.keys)
     end
   end
