@@ -30,6 +30,7 @@
 #
 
 class Post < ApplicationRecord
+  include HasMeta
   acts_as_paranoid
 
   validates_presence_of :title
@@ -42,6 +43,13 @@ class Post < ApplicationRecord
   belongs_to :column
 
   enum state: [:draft, :published]
+
+  META_VARIABLES = {
+    paginate_per: '20',
+    management_paginate_per: '10',
+    video_provider: '',
+    video_identifier: ''
+  }.freeze
 
   def article?
     !video?
