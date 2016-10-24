@@ -25,10 +25,6 @@ module API::V1
       updated
     end
 
-    def add_members
-      @post.add_members(params[:post_ids])
-    end
-
     private
 
     def find_post
