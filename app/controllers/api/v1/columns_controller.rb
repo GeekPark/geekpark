@@ -40,7 +40,7 @@ module API::V1
       params.permit(:title,
                     :description,
                     :content_type,
-                    meta: Column::META_VARIABLES.keys)
+                    meta: Column::DEFAULT_META.keys)
     end
   end
 end

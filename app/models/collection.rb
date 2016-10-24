@@ -30,7 +30,7 @@ class Collection < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
 
-  META_VARIABLES = {
+  DEFAULT_META = {
     paginate_per: '10',
     management_paginate_per: '10',
     tag_visibility: 'false'

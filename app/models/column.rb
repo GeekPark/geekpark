@@ -30,7 +30,7 @@ class Column < ApplicationRecord
 
   enum content_type: [:normal, :video]
 
-  META_VARIABLES = {
+  DEFAULT_META = {
     paginate_per: '20',
     management_paginate_per: '10',
     theme_color: '#ff0000'

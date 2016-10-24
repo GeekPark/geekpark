@@ -45,7 +45,7 @@ module API::V1
                     :description,
                     :banner,
                     :banner_mobile,
-                    meta: Collection::META_VARIABLES.keys)
+                    meta: Collection::DEFAULT_META.keys)
     end
   end
 end
