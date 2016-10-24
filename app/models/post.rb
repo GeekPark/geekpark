@@ -44,7 +44,7 @@ class Post < ApplicationRecord
 
   enum state: [:draft, :published]
 
-  META_VARIABLES = {
+  DEFAULT_META = {
     paginate_per: '20',
     management_paginate_per: '10',
     video_provider: '',

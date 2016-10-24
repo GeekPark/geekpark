@@ -40,7 +40,7 @@ module API::V1
                     :tags,
                     :column_id,
                     :state,
-                    meta: Post::META_VARIABLES.keys)
+                    meta: Post::DEFAULT_META.keys)
     end
   end
 end
