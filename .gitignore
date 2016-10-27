@@ -22,5 +22,3 @@
 .env
 
 coverage/
-
-front-end/node_modules/

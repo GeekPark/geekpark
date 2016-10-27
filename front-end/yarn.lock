@@ -4856,7 +4856,7 @@ sass-graph@^2.1.1:
     lodash "^4.0.0"
     yargs "^4.7.1"
 
-sass-loader@^4.0.0:
+sass-loader:
   version "4.0.2"
   resolved "http://registry.npm.taobao.org/sass-loader/download/sass-loader-4.0.2.tgz#a616eb770366543e64f547c8630f39c4da75f15d"
   dependencies:
