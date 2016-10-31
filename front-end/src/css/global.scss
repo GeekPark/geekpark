@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+html, body {
+  background-color: #f9f9f9;
+}
+
+iframe {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+
+  :focus {
+    outline: none;
+  }
+}
