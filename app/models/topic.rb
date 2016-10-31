@@ -8,11 +8,13 @@
 #  meta        :hstore
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  deleted_at  :datetime
 #
 # Indexes
 #
-#  index_topics_on_meta   (meta)
-#  index_topics_on_title  (title)
+#  index_topics_on_deleted_at  (deleted_at)
+#  index_topics_on_meta        (meta)
+#  index_topics_on_title       (title)
 #
 
 class Topic < ApplicationRecord
