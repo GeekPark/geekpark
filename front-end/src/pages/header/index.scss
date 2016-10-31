@@ -2,6 +2,16 @@ $height: 55px;
 
 @import "../../css/common.scss";
 
+@mixin link {
+    font-size: 1.4rem;
+    color: #fff;
+
+    &:hover {
+      @include animated;
+      color: $color_blue;
+    }
+}
+
 header {
   background-color: #000;
   height: $height;
@@ -14,9 +24,26 @@ header {
 
   color: #fff;
 
-  .logo {
+  .left {
     flex-basis: 200px;
     text-align: left;
+  }
+
+  .middle {
+    flex-grow: 1;
+    min-width: 400px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .right {
+    flex-basis: 200px;
+    text-align: right;
+    line-height: $height;
+    vertical-align: middle;
+  }
+
+  .logo {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -27,34 +54,22 @@ header {
     }
   }
 
-  .login-btn {
-    background-color: green;
-    flex-basis: 200px;
-    text-align: right;
-  }
 
   .nav {
-    flex-grow: 1;
     display: inline-block;
-    text-align: center;
-    min-width: 400px;
-    padding: 0;
-
-    $link_blue: $color-blue;
 
     .nav-link {
+      @include link;
       padding: 10px 15px 15px 15px;
       position: relative;
       line-height: 30px;
       display: inline-block;
       font-weight: bold;
       vertical-align: middle;
-      font-size: 1.4rem;
-      color: #fff;
 
       &.active, &:hover {
+        color: $color_blue;
         @include animated;
-        color: $link_blue;
         &:after {
           opacity: 1;
         }
@@ -69,8 +84,23 @@ header {
         width: 100%;
         height: 4px;
         opacity: 0;
-        background-color: $link_blue;
+        background-color: $color_blue;
       }
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .iconfont {
+      font-size: 2rem;
+      margin-right: 8px;
+    }
+
+    .login-btn a {
+      @include link;
     }
   }
 }
