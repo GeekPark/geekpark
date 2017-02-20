@@ -14,13 +14,13 @@ $height: 55px;
 
 header {
   background-color: #000;
+  display: block;
   height: $height;
-  border: 0;
-  margin: 0;
+}
+.header {
   padding: 0 38px;
-  overflow-y: hidden;
-
   display: flex;
+  height: 100%;
 
   color: #fff;
 
@@ -51,6 +51,12 @@ header {
     img {
       width: 182px;
       height: 35px;
+    }
+
+    @media screen and (max-width: 721px) {
+      & {
+        display: none;
+      }
     }
   }
 
@@ -93,6 +99,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    height: 100%;
+
+    @media screen and (max-width: 721px) {
+      & {
+        display: none;
+      }
+    }
 
     .iconfont {
       font-size: 2rem;
@@ -100,7 +113,11 @@ header {
     }
 
     .login-btn a {
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       @include link;
+      height: 100%;
     }
   }
 }
