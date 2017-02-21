@@ -13,4 +13,17 @@ module APIControllerHelper
   def updated
     head(:no_content)
   end
+
+  def variable_result(*vars, **keywords)
+    result = {}
+    vars.each do |k|
+      v = instance_variable_get("@#{k}")
+      result[k] = v if v
+    end
+
+    keywords.each do |k, v|
+      result[k] = v if v
+    end
+    success(result)
+  end
 end

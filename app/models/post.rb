@@ -51,6 +51,8 @@ class Post < ApplicationRecord
     video_identifier: ''
   }.freeze
 
+  scope :for_homepage, -> { where(state: :pubished) }
+
   def article?
     !video?
   end

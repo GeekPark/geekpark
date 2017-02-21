@@ -38,4 +38,6 @@ class Column < ApplicationRecord
 
   include HasMembers
   def_add_members field: :posts
+
+  scope :hearsay, -> { where(title: '捕风捉影') }
 end
