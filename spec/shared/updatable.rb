@@ -1,7 +1,7 @@
 shared_examples :updatable do |factory, as: nil|
   model_name = factory.to_s.underscore
 
-  it "update #{model_name} correctlly" do
+  it "update #{model_name} correctly" do
     object = create(factory)
 
     params = { format: :json, **query, id: object.id }

@@ -1,5 +1,5 @@
 shared_examples :creatable do |model, as: nil|
-  it "creates #{model.to_s.underscore} correctlly" do
+  it "creates #{model.to_s.underscore} correctly" do
     expect {
       params = { **query, format: :json }
       params.merge!(public_send(:as, as)) if as

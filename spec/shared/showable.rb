@@ -1,5 +1,5 @@
 shared_examples :showable do |factory, as: nil|
-  it "show #{factory} correctlly" do
+  it "show #{factory} correctly" do
     object = create(factory)
 
     params = { format: :json, id: object.id }

@@ -48,6 +48,9 @@ gem 'redis'
 # soft deletion
 gem 'paranoia', '~> 2.2.0.pre'
 
+# pagination
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   #   and get a debugger console

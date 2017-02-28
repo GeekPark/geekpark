@@ -1,5 +1,5 @@
 shared_examples :indicable do |model, as: nil|
-  it "list #{model.to_s.underscore} correctlly" do
+  it "list #{model.to_s.underscore} correctly" do
     query ||= {}
     create_list(model.to_s.underscore, 3)
 

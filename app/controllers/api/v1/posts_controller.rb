@@ -3,12 +3,7 @@ module API::V1
     before_action :find_post, only: %i(destroy show update)
 
     def index
-      success(Post.all)
-    end
-
-    def create
-      post = Post.create(post_params)
-      created(post)
+      success { paginated Post.all }
     end
 
     def destroy
