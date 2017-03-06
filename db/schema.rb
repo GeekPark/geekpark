@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20161012073710) do
   create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.string   "username"
-    t.integer  "state"
+    t.string   "state"
     t.integer  "post_id"
     t.integer  "parent_id"
     t.datetime "created_at", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.string   "link"
     t.string   "picture"
     t.integer  "column_id"
-    t.integer  "state"
+    t.string   "state"
     t.boolean  "hidden",           default: false
     t.string   "tags",             default: [],                 array: true
     t.datetime "published_at"

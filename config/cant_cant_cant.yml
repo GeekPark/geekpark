@@ -20,10 +20,11 @@ visitor: &visitor
 
   api/v1/posts#show: allow
 
-  api/v1/posts#create: deny
-  api/v1/posts#index: deny
-  api/v1/posts#destroy: deny
-  api/v1/posts#update: deny
+  api/v1/admin/posts#show: deny
+  api/v1/admin/posts#index: deny
+  api/v1/admin/posts#update: deny
+  api/v1/admin/posts#destroy: deny
+  api/v1/admin/posts#create: deny
 
 user: &user {}
 
@@ -37,10 +38,12 @@ editor: &editor
   api/v1/columns#index: allow
   api/v1/columns#add_members: allow
 
-  api/v1/posts#create: allow
-  api/v1/posts#index: allow
-  api/v1/posts#destroy: allow
-  api/v1/posts#update: allow
+  api/v1/admin/posts#show: allow
+  api/v1/admin/posts#index: allow
+  api/v1/admin/posts#update: allow
+  api/v1/admin/posts#destroy: allow
+  api/v1/admin/posts#create: allow
+
 
 admin: &admin
   api/v1/collections#update: allow

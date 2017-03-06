@@ -46,7 +46,8 @@ gem 'redis'
 gem 'redcarpet'
 
 # enrich active model
-gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
+# gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
+gem 'cant_cant_cant', path: '~/project/cant_cant_cant'
 gem 'enumerize'
 gem 'kaminari' # pagination
 gem 'paranoia', '~> 2.2.0.pre' # soft deletion

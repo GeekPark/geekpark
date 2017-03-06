@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  content    :string
 #  username   :string
-#  state      :integer
+#  state      :string
 #  post_id    :integer
 #  parent_id  :integer
 #  created_at :datetime         not null

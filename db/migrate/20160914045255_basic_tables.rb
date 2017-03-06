@@ -27,7 +27,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
       t.references :column, index: true
 
-      t.integer :state, index: true
+      t.string :state, index: true
       t.boolean :hidden, index: true, default: false
 
       t.string :tags, array: true, default: [], index: true
@@ -40,7 +40,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :content
 
       t.string :username, index: true
-      t.integer :state, index: true
+      t.string :state, index: true
 
       t.references :post, index: true
       t.references :parent, index: true

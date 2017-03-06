@@ -9,9 +9,9 @@ RSpec.describe API::V1::Admin::PostsController, type: :controller do
     let(:query) {
       Hash[
         title: FFaker::LoremCN.word,
-        content: '',
+        content_source: '',
         column_id: column.id,
-        state: 'draft',
+        state: 'draft'
       ]
     }
   end
@@ -19,9 +19,19 @@ RSpec.describe API::V1::Admin::PostsController, type: :controller do
     let(:query) {
       Hash[
         title: '1',
-        content: '2',
+        content_type: 'markdown',
+        content_source: '**2**',
         column_id: column.id,
         state: 'published',
+      ]
+    }
+
+    let(:object_props) {
+      Hash[
+        title: '1',
+        content: '<b>2</b>',
+        column_id: column.id,
+        state: 'published'
       ]
     }
   end

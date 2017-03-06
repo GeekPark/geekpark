@@ -1,16 +1,20 @@
 Rails.application.config.after_initialize do
-  config = File.join(Rails.root, 'config/cant_cant_cant.yml')
-  CantCantCant.initialize(config) do |c|
-    # aggressive: Inject validation to all controller actions
-    # conservative: Inject validation only to those specified in config
-    c.injection_mode = :aggressive
-    c.injection_controller_base = ActionController
-    c.injection_exceptions = []
+  perm_file = File.join(Rails.root, 'config/cant_cant_cant.yml')
+  CantCantCant.initialize(perm_file) do |c|
+    # base_controller: Inject validation to the base controller
+    # individual:      Inject validation only to actions specified in config
+    c.injection_mode = :base_controller
+    c.base_controller = API::V1::APIController
 
-    # Specify what to do for unspecfied access
-    # c.default_policy = :allow
+    # Specify what to do for unlisted access
+    c.default_policy = :allow
 
-    # Should it raise an exception or ignore
-    # c.report_unfilled_action = :ignore
+    # warn:   print a warning for unlisted actions and adopt default_policy
+    # raise:  raise an exception for unlisted actions
+    # ignore: ignore validation on unlisted actions and adopt default_policy
+    c.report_unlisted_actions = :warn
+
+    # load permission from file for every request for cache them
+    c.caching = Rails.env.production?
   end
 end

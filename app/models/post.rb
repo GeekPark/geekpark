@@ -13,7 +13,7 @@
 #  link             :string
 #  picture          :string
 #  column_id        :integer
-#  state            :integer
+#  state            :string
 #  hidden           :boolean          default(FALSE)
 #  tags             :string           default([]), is an Array
 #  published_at     :datetime

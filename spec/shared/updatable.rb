@@ -11,7 +11,8 @@ shared_examples :updatable do |factory, as: nil|
     expect(response).to be_no_content
 
     object.reload
-    match_query(object, query)
+    object_props ||= query
+    match_query(object, object_props)
   end
 
   if as.present? && as.intern != :visitor
