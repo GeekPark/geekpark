@@ -40,16 +40,16 @@ gem 'sidekiq'
 # Serialize JSON for API
 gem 'active_model_serializers', '~> 0.10.0'
 
-# Authentication
-gem 'cant_cant_cant', github: 'shouya/cant_cant_cant'
-
 gem 'redis'
 
-# soft deletion
-gem 'paranoia', '~> 2.2.0.pre'
+# markdown support
+gem 'redcarpet'
 
-# pagination
-gem 'kaminari'
+# enrich active model
+gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
+gem 'enumerize'
+gem 'kaminari' # pagination
+gem 'paranoia', '~> 2.2.0.pre' # soft deletion
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution

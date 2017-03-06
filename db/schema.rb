@@ -16,6 +16,22 @@ ActiveRecord::Schema.define(version: 20161012073710) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
+  create_table "ads", force: :cascade do |t|
+    t.string   "title"
+    t.string   "position"
+    t.hstore   "meta",           default: {}
+    t.string   "link"
+    t.string   "picture"
+    t.datetime "active_at"
+    t.datetime "active_through"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_ads_on_deleted_at", using: :btree
+    t.index ["meta"], name: "index_ads_on_meta", using: :btree
+    t.index ["position"], name: "index_ads_on_position", using: :btree
+  end
+
   create_table "collection_items", force: :cascade do |t|
     t.integer "collection_id"
     t.integer "post_id"
@@ -28,9 +44,9 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.string   "description"
     t.string   "banner"
     t.string   "banner_mobile"
-    t.hstore   "meta"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.hstore   "meta",          default: {}
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_collections_on_deleted_at", using: :btree
     t.index ["meta"], name: "index_collections_on_meta", using: :btree
@@ -40,10 +56,10 @@ ActiveRecord::Schema.define(version: 20161012073710) do
   create_table "columns", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.hstore   "meta"
+    t.hstore   "meta",         default: {}
     t.integer  "content_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
     t.index ["content_type"], name: "index_columns_on_content_type", using: :btree
     t.index ["deleted_at"], name: "index_columns_on_deleted_at", using: :btree
@@ -69,18 +85,21 @@ ActiveRecord::Schema.define(version: 20161012073710) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
-    t.text     "content"
     t.text     "abstract"
-    t.hstore   "meta"
+    t.string   "content_type"
+    t.text     "content_source"
+    t.text     "content_rendered"
+    t.hstore   "meta",             default: {}
     t.string   "source"
     t.string   "link"
     t.string   "picture"
     t.integer  "column_id"
     t.integer  "state"
-    t.boolean  "hidden",     default: false
-    t.string   "tags",       default: [],                 array: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "hidden",           default: false
+    t.string   "tags",             default: [],                 array: true
+    t.datetime "published_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.datetime "deleted_at"
     t.index ["column_id"], name: "index_posts_on_column_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
@@ -101,9 +120,9 @@ ActiveRecord::Schema.define(version: 20161012073710) do
   create_table "topics", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.hstore   "meta"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.hstore   "meta",        default: {}
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
     t.index ["meta"], name: "index_topics_on_meta", using: :btree

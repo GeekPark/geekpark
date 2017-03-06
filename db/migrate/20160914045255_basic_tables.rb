@@ -13,11 +13,13 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
     create_table :posts do |t|
       t.string :title, index: true
-
-      t.text :content
       t.text :abstract
 
-      t.hstore :meta, index: true
+      t.string :content_type
+      t.text :content_source
+      t.text :content_rendered
+
+      t.hstore :meta, default: '', index: true
 
       t.string :source
       t.string :link
@@ -30,6 +32,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
       t.string :tags, array: true, default: [], index: true
 
+      t.datetime :published_at
       t.timestamps
     end
 
@@ -49,7 +52,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :title, index: true
       t.string :description
 
-      t.hstore :meta, index: true
+      t.hstore :meta, default: '', index: true
 
       # video/article
       t.integer :content_type, index: true
@@ -66,7 +69,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :title, index: true
       t.string :description
 
-      t.hstore :meta, index: true
+      t.hstore :meta, default: '', index: true
 
       t.timestamps
     end
@@ -83,8 +86,22 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :banner
       t.string :banner_mobile
 
-      t.hstore :meta, index: true
+      t.hstore :meta, default: '', index: true
 
+      t.timestamps
+    end
+
+    create_table :ads do |t|
+      t.string :title
+      t.string :position, index: true
+
+      t.hstore :meta, default: '', index: true
+
+      t.string :link
+      t.string :picture
+
+      t.datetime :active_at
+      t.datetime :active_through
       t.timestamps
     end
   end

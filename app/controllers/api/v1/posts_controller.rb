@@ -6,18 +6,8 @@ module API::V1
       success { paginated Post.all }
     end
 
-    def destroy
-      @post.destroy
-      updated
-    end
-
     def show
       success(@post)
-    end
-
-    def update
-      @post.update_attributes(post_params)
-      updated
     end
 
     private

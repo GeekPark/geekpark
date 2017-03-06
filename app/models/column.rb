@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  title        :string
 #  description  :string
-#  meta         :hstore
+#  meta         :hstore           default({})
 #  content_type :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

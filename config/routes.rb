@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, except: [:new, :edit] do
+      namespace :admin do
+        resources :posts
+      end
+
       resources :collections do
         post :members, to: 'collections#add_members'
         put :members,  to: 'collections#reset_members'
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
         post :members, to: 'columns#add_members'
       end
 
-      resources :posts
+      resources :posts, only: [:index, :show]
     end
   end
 end

@@ -9,7 +9,7 @@ shared_examples :destructible do |factory, as: nil|
     expect {
       delete :destroy, params: params
       expect(response).to be_no_content
-    }.to change { object ̰.class.count }.by(-1)
+    }.to change { object.class.count }.by(-1)
   end
 
   if as.present? && as.intern != :visitor

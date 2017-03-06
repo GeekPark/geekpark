@@ -2,21 +2,24 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  title      :string
-#  content    :text
-#  abstract   :text
-#  meta       :hstore
-#  source     :string
-#  link       :string
-#  picture    :string
-#  column_id  :integer
-#  state      :integer
-#  hidden     :boolean          default(FALSE)
-#  tags       :string           default([]), is an Array
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  deleted_at :datetime
+#  id               :integer          not null, primary key
+#  title            :string
+#  abstract         :text
+#  content_type     :string
+#  content_source   :text
+#  content_rendered :text
+#  meta             :hstore           default({})
+#  source           :string
+#  link             :string
+#  picture          :string
+#  column_id        :integer
+#  state            :integer
+#  hidden           :boolean          default(FALSE)
+#  tags             :string           default([]), is an Array
+#  published_at     :datetime
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  deleted_at       :datetime
 #
 # Indexes
 #
@@ -42,7 +45,10 @@ class Post < ApplicationRecord
   has_many :collections, through: :collection_items
   belongs_to :column
 
-  enum state: [:draft, :published]
+  before_save :render_content
+
+  enumerize :state, in: [:draft, :published], default: :draft
+  enumerize :content_type, in: [:html, :markdown, :plain], default: :plain
 
   DEFAULT_META = {
     paginate_per: '20',
@@ -51,13 +57,28 @@ class Post < ApplicationRecord
     video_identifier: ''
   }.freeze
 
-  scope :for_homepage, -> { where(state: :pubished) }
-
   def article?
     !video?
   end
 
   def video?
     meta['video_provider'].present?
+  end
+
+  def content
+    content_rendered || render_content
+  end
+
+  private
+
+  def render_content
+    case content_type.intern
+    when :html
+      self.content_rendered = content_source
+    when :markdown
+      self.content_rendered = MarkdownEngine.render_html(content_source)
+    when :plain
+      self.content_rendered = "<p>#{content_source}</p>"
+    end
   end
 end
