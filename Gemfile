@@ -38,7 +38,7 @@ gem 'rack-attack'
 gem 'sidekiq'
 
 # Serialize JSON for API
-gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_model_serializers', '~> 0.10'
 
 gem 'redis'
 

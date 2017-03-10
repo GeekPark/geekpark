@@ -42,11 +42,14 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :username, index: true
       t.string :state, index: true
 
-      t.references :post, index: true
+      t.string  :commentable_type
+      t.integer :commentable_id
+
       t.references :parent, index: true
 
       t.timestamps
     end
+    add_index :comments, [:commentable_type, :commentable_id]
 
     create_table :columns do |t|
       t.string :title, index: true
@@ -104,5 +107,14 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.datetime :active_through
       t.timestamps
     end
+
+    create_table :counts do |t|
+      t.string  :countable_type
+      t.integer :countable_id
+
+      t.integer :count
+      t.timestamps
+    end
+    add_index :counts, [:countable_id, :countable_type]
   end
 end

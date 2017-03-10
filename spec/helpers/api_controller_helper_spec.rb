@@ -20,8 +20,9 @@ describe APIControllerHelper do
       posts = Post.all
 
       paginated = paginated_with_meta(posts, 3)
+      paginated = paginated[:__extra_opts]
 
-      expect(paginated[:data].count).to eq(3)
+      expect(paginated[:json].count).to eq(3)
       expect(paginated[:meta][:current_page]).to eq(1)
       expect(paginated[:meta][:total_pages]).to eq(7)
       expect(paginated[:meta][:total_count]).to eq(20)

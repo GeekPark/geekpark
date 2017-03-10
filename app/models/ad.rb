@@ -22,7 +22,12 @@
 #
 
 class Ad < ApplicationRecord
+  include Countable
+
   acts_as_paranoid
+
+  add_instance_counter_for :click
+  add_instance_counter_for :view
 
   enumerize :position, in: [
               :banner,
@@ -30,6 +35,7 @@ class Ad < ApplicationRecord
               :top_left,
               :top_right
             ]
+
 
   def self.currently_active
     all.where('active_at <= :now AND active_through >= :now', now: Time.now)

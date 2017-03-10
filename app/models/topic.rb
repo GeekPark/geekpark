@@ -25,7 +25,7 @@ class Topic < ApplicationRecord
   validates_presence_of :description
 
   has_many :topic_items, dependent: :destroy
-  has_many :posts, through: :collection_items
+  has_many :posts, through: :topic_items
 
   DEFAULT_META = {
     paginate_per: '20',
@@ -34,5 +34,6 @@ class Topic < ApplicationRecord
   }.freeze
 
   include HasMembers
-  def_add_members field: :posts
+  def_add_members   field: :posts
+  def_reset_members field: :posts
 end

@@ -6,7 +6,11 @@ module HasCurrentRoles
   end
 
   def current_roles
-    roles = params[:user_roles]&.map(&:intern) || []
+    if Rails.env.development? || Rails.env.test?
+      roles = params[:roles]&.split&.map(&:intern) || []
+    else
+      roles = current_user_roles || []
+    end
     roles.concat(Role.default_roles)
     roles
   end

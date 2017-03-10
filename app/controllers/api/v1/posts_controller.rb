@@ -15,17 +15,5 @@ module API::V1
     def find_post
       @post = Post.find(params[:id] || params[:post_id])
     end
-
-    def post_params
-      params.permit(:title,
-                    :content,
-                    :abstract,
-                    :source,
-                    :picture,
-                    :tags,
-                    :column_id,
-                    :state,
-                    meta: Post::DEFAULT_META.keys)
-    end
   end
 end

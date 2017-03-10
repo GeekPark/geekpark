@@ -5,6 +5,7 @@ FactoryGirl.define do
     content_type :plain
     content_source { FFaker::LoremCN.paragraph }
     state :published
+    published_at { 1.day.ago }
 
     trait :draft do
       state :draft

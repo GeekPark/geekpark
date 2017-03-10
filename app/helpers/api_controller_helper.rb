@@ -1,7 +1,9 @@
 module APIControllerHelper
   def success(object = nil, **opts)
     object = yield if block_given?
-    render json: object, status: :ok, **opts
+    extra_opts = {}
+    extra_opts = object.delete(:__extra_opts) if object.is_a?(Hash)
+    render json: object, status: :ok, **{ **extra_opts, **opts }
   end
 
   def created(object = nil)
@@ -35,15 +37,17 @@ module APIControllerHelper
 
   def paginated_with_meta(collection = nil, per = 10, &block)
     data = paginated(collection, per, &block)
-
     {
-      meta: {
-        current_page: data.current_page,
-        total_pages: data.total_pages,
-        total_count: data.total_count,
-        limit_value: data.limit_value
-      },
-      data: data
+      __extra_opts: {
+        json: data,
+        root: 'results',
+        meta: {
+          current_page: data.current_page,
+          total_pages: data.total_pages,
+          total_count: data.total_count,
+          limit_value: data.limit_value
+        }
+      }
     }
   end
 end

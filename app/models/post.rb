@@ -34,20 +34,27 @@
 
 class Post < ApplicationRecord
   include HasMeta
+  include SmartFilterable
+  include Countable
+
   acts_as_paranoid
+
+  add_instance_counter_for :click
+  add_instance_counter_for :publishing
+  add_instance_counter_for :sharing
 
   validates_presence_of :title
   validates_presence_of :column
   validates_presence_of :state
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_items, dependent: :destroy
   has_many :collections, through: :collection_items
   belongs_to :column
 
   before_save :render_content
 
-  enumerize :state, in: [:draft, :published], default: :draft
+  enumerize :state, in: [:draft, :published, :closed], default: :draft
   enumerize :content_type, in: [:html, :markdown, :plain], default: :plain
 
   DEFAULT_META = {
@@ -67,6 +74,24 @@ class Post < ApplicationRecord
 
   def content
     content_rendered || render_content
+  end
+
+  def publish!
+    self.state = :published
+    self.published_at = Time.now
+    save
+    incr_publishing_count
+  end
+
+  def draft!
+    self.state = :draft
+    self.published_at = nil
+    save
+  end
+
+  def close!
+    self.state = :closed
+    save
   end
 
   private

@@ -25,6 +25,9 @@ visitor: &visitor
   api/v1/admin/posts#update: deny
   api/v1/admin/posts#destroy: deny
   api/v1/admin/posts#create: deny
+  api/v1/admin/posts#publish: deny
+  api/v1/admin/posts#draft: deny
+  api/v1/admin/posts#close: deny
 
 user: &user {}
 
@@ -44,6 +47,9 @@ editor: &editor
   api/v1/admin/posts#destroy: allow
   api/v1/admin/posts#create: allow
 
+  api/v1/admin/posts#publish: allow
+  api/v1/admin/posts#draft: allow
+  api/v1/admin/posts#close: allow
 
 admin: &admin
   api/v1/collections#update: allow
