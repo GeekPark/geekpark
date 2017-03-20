@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://gems.ruby-china.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,9 +30,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-attack'
 gem 'sidekiq'
@@ -54,6 +51,8 @@ gem 'paranoia', '~> 2.2.0.pre' # soft deletion
 
 # for generating api doc
 gem 'apipie-rails'
+
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
@@ -83,6 +82,11 @@ group :development do
   # no more tail -f development.log,
   #   see https://github.com/dejan/rails_panel
   gem 'meta_request'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
 group :test do
@@ -92,3 +96,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
