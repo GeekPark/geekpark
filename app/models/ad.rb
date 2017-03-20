@@ -38,7 +38,10 @@ class Ad < ApplicationRecord
 
 
   def self.currently_active
-    all.where('active_at <= :now AND active_through >= :now', now: Time.now)
+    all.where(
+      'active_at <= :now AND active_through >= :now',
+      now: Time.now
+    )
   end
 
   def self.at(position)

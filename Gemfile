@@ -46,11 +46,14 @@ gem 'redis'
 gem 'redcarpet'
 
 # enrich active model
-# gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
-gem 'cant_cant_cant', path: '~/project/cant_cant_cant'
+gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
+# gem 'cant_cant_cant', path: '~/project/cant_cant_cant'
 gem 'enumerize'
 gem 'kaminari' # pagination
 gem 'paranoia', '~> 2.2.0.pre' # soft deletion
+
+# for generating api doc
+gem 'apipie-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
@@ -76,6 +79,10 @@ group :development do
   gem 'awesome_rails_console'
   # Anonate models with db table schemas
   gem 'annotate'
+
+  # no more tail -f development.log,
+  #   see https://github.com/dejan/rails_panel
+  gem 'meta_request'
 end
 
 group :test do

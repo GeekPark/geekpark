@@ -8,6 +8,8 @@ module SmartFilterable
       end
     end
 
+    private
+
     def smart_filter_key_val(key, val)
       col = columns_hash[key]
       case col.type

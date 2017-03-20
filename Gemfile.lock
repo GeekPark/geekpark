@@ -1,5 +1,6 @@
-PATH
-  remote: ~/project/cant_cant_cant
+GIT
+  remote: https://github.com/shouya/cant_cant_cant.git
+  revision: 2dc86d3238febe461cfea48b8eeef38d0482c6d5
   specs:
     cant_cant_cant (0.1.10)
       rails (>= 4.2.0)
@@ -52,6 +53,9 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
+    apipie-rails (0.4.0)
+      json
+      rails (>= 4.0)
     arel (7.1.1)
     ast (2.2.0)
     awesome_print (1.7.0)
@@ -61,6 +65,7 @@ GEM
       railties
     builder (3.2.3)
     byebug (9.0.5)
+    callsite (0.0.11)
     case_transform (0.2)
       activesupport
     codeclimate-test-reporter (0.5.0)
@@ -131,6 +136,10 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    meta_request (0.4.0)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.1.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -161,6 +170,8 @@ GEM
     rack (2.0.1)
     rack-attack (5.0.1)
       rack
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -279,6 +290,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10)
   annotate
+  apipie-rails
   awesome_rails_console
   byebug
   cant_cant_cant!
@@ -292,6 +304,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (~> 3.0.5)
+  meta_request
   paranoia (~> 2.2.0.pre)
   pg
   puma (~> 3.0)

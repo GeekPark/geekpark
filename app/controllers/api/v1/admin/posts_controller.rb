@@ -1,34 +1,52 @@
 module API::V1::Admin
   class PostsController < AdminController
+    resource_description { short '管理介面文章/視頻 API' }
     before_action :find_post, only: %i(destroy show update publish)
 
+    api :GET, '/admin/posts', 'List posts with extra info'
     def index
       success(each_serializer: ::AdminShortPostSerializer) do
         paginated_with_meta Post.all.includes(:column)
       end
     end
 
+    api :GET, '/admin/posts/:id', 'Show a specific post'
     def show
       success(@post)
     end
 
-    def hot_in_week
-      success(Post.order_by_click_count(7.days).take(7))
+    def_param_group :post_params do
+      param :title, String, required: true
+      param :abstract, String, desc: '摘要'
+      param :content_type, %w(html markdown plain),
+            required: true, desc: '正文格式'
+      param :content_source, String, desc: '正文'
+      param :tags, Array, of: String
+      param :column_id, Integer, required: true
+      param :picture, String
+      param :author_ids, Integer, required: true
+      param :source, String, '消息來源'
+      param :state, %w(draft published closed)
+      param :meta, Hash
     end
 
+    api :POST, '/admin/posts', 'Create a post'
+    param_group :post_params
     def create
       # TODO: params[:auto_publish_at]
       post = Post.create(post_params)
       created(post)
     end
 
+    api :PATCH, '/admin/posts/:id/publish', 'Publish a post'
     def publish
       @post.publish!
       updated
     end
 
-    def draft
-      @post.draft!
+    api :PATCH, '/admin/posts/:id/unpublish', 'Un-publish a post'
+    def unpublish
+      @post.unpublish!
       updated
     end
 

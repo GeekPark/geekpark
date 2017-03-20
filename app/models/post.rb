@@ -54,14 +54,14 @@ class Post < ApplicationRecord
 
   before_save :render_content
 
-  enumerize :state, in: [:draft, :published, :closed], default: :draft
+  enumerize :state, in: %i[unpublished published closed], default: :unpublished
   enumerize :content_type, in: [:html, :markdown, :plain], default: :plain
 
   DEFAULT_META = {
-    paginate_per: '20',
+    paginate_per:            '20',
     management_paginate_per: '10',
-    video_provider: '',
-    video_identifier: ''
+    video_provider:          '',
+    video_identifier:        ''
   }.freeze
 
   def article?
@@ -83,10 +83,11 @@ class Post < ApplicationRecord
     incr_publishing_count
   end
 
-  def draft!
-    self.state = :draft
+  def unpublish!
+    self.state = :unpublished
     self.published_at = nil
     save
+    incr_publishing_count(-1)
   end
 
   def close!
