@@ -4,7 +4,6 @@ lock "3.7.2"
 set :application, "geekpark"
 set :repo_url, "git@github.com:GeekPark/geekpark.git"
 
-set :stage, :sandbox
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
