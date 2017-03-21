@@ -7,7 +7,7 @@ Apipie.configure do |config|
   config.default_locale          = 'en'
   config.validate                = false
   config.namespaced_resources    = true
-  config.use_cache               = Rails.env.production?
+  config.use_cache               = false # Rails.env.production?
   config.markup                  = Object.new.tap do |o|
     def o.to_html(txt)
       MarkdownEngine.render_html(txt)

@@ -9,6 +9,9 @@
 server 'geeklab', roles: %w[app db web]
 
 set :user, 'shou'
+set :stage, :production
+set :rails_env, :production
+set :rack_env, :production
 
 set :repo_url, "file:///home/#{fetch(:user)}/gitrepo/#{fetch(:application)}.git"
 set :deploy_to, "/home/#{fetch(:user)}/projects/#{fetch(:application)}"
@@ -75,21 +78,8 @@ set :puma_init_active_record, true
 #   }
 
 namespace :deploy do
-  task :initial do
-    on roles(:app) do
-      before 'deploy:restart', 'puma:start'
-    end
-  end
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
-    end
-  end
-
+  before 'deploy:restart', 'puma:restart'
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  after  :finishing,    :restart
 end
 
