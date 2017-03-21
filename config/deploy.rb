@@ -4,6 +4,7 @@ lock "3.7.2"
 set :application, "geekpark"
 set :repo_url, "git@github.com:GeekPark/geekpark.git"
 
+set :stage, :sandbox
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -34,4 +35,17 @@ append :linked_files, "config/database.yml", "config/secrets.yml"
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
+
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+end
+
 

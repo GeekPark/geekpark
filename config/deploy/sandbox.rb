@@ -8,8 +8,17 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server 'geeklab', roles: %[app db web]
 
-set :repo_url, "file:///home/shou/gitrepo/geekpark.git"
-set :deploy_to, "/home/shou/projects/geekpark"
+set :repo_url, "file:///home/#{fetch(:user)}/gitrepo/#{fetch(:application)}.git"
+set :deploy_to, "/home/#{fetch(:user)}/projects/#{fetch(:application)}"
+
+set :puma_bind,               "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_state,              "#{shared_path}/tmp/pids/puma.state"
+set :puma_pid,                "#{shared_path}/tmp/pids/puma.pid"
+set :puma_access_log,         "#{release_path}/log/puma.error.log"
+set :puma_error_log,          "#{release_path}/log/puma.access.log"
+set :puma_preload_app,        true
+set :puma_worker_timeout,     nil
+set :puma_init_active_record, true
 
 
 # role-based syntax
@@ -62,3 +71,23 @@ set :deploy_to, "/home/shou/projects/geekpark"
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+namespace :deploy do
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+    end
+  end
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:restart'
+    end
+  end
+
+  after  :finishing,    :compile_assets
+  after  :finishing,    :cleanup
+  after  :finishing,    :restart
+end
+
