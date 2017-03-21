@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/seuros/capistrano-puma.git
+  revision: 83341579e72175240d6d06466b7e1a039d7490ec
+  specs:
+    capistrano3-puma (3.0.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (~> 3.4)
+
+GIT
   remote: https://github.com/shouya/cant_cant_cant.git
   revision: 2dc86d3238febe461cfea48b8eeef38d0482c6d5
   specs:
@@ -84,9 +93,6 @@ GEM
     capistrano-rbenv (2.0.4)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
-    capistrano3-puma (1.2.1)
-      capistrano (~> 3.0)
-      puma (>= 2.6)
     case_transform (0.2)
       activesupport
     codeclimate-test-reporter (0.5.0)
@@ -325,7 +331,7 @@ DEPENDENCIES
   capistrano
   capistrano-rails
   capistrano-rbenv
-  capistrano3-puma
+  capistrano3-puma!
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   enumerize

@@ -8,6 +8,8 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server 'geeklab', roles: %[app db web]
 
+set :user, 'shou'
+
 set :repo_url, "file:///home/#{fetch(:user)}/gitrepo/#{fetch(:application)}.git"
 set :deploy_to, "/home/#{fetch(:user)}/projects/#{fetch(:application)}"
 
