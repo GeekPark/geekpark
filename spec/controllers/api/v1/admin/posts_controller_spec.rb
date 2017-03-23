@@ -11,7 +11,7 @@ RSpec.describe API::V1::Admin::PostsController, type: :controller do
         title: FFaker::LoremCN.word,
         content_source: '',
         column_id: column.id,
-        state: 'draft'
+        state: 'unpublished'
       ]
     }
   end

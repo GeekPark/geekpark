@@ -1,7 +1,7 @@
 module API::V1::Admin
   class PostsController < AdminController
     resource_description { short '管理介面文章/視頻 API' }
-    before_action :find_post, only: %i(destroy show update publish)
+    before_action find_record, only: %i(destroy show update publish)
 
     api :GET, '/admin/posts', 'List posts with extra info'
     def index
@@ -26,15 +26,21 @@ module API::V1::Admin
       param :picture, String
       param :author_ids, Integer, required: true
       param :source, String, '消息來源'
-      param :state, %w(draft published closed)
+      param :state, %w(unpublished published closed)
       param :meta, Hash
     end
 
     api :POST, '/admin/posts', 'Create a post'
     param_group :post_params
+    param :auto_publish_at, Time, desc: '定時發布的文章'
     def create
-      # TODO: params[:auto_publish_at]
       post = Post.create(post_params)
+
+      if params[:auto_publish_at]
+        till = Time.parse(params[:auto_publish_at])
+        post.publish_later(till: till)
+      end
+
       created(post)
     end
 
@@ -86,10 +92,6 @@ module API::V1::Admin
     end
 
     private
-
-    def find_post
-      @post = Column.find(params[:id] || params[:post_id])
-    end
 
     def post_params
       params.permit(:title,

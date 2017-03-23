@@ -8,6 +8,7 @@ shared_examples :showable do |factory, as: nil|
     get :show, params: params
     expect(response).to be_success
 
-    expect(result['id']).to eq(object.id)
+    expect(result).to have_key(factory.to_s)
+    expect(result[factory.to_s]['id']).to eq(object.id)
   end
 end

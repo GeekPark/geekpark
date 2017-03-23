@@ -8,7 +8,7 @@ FactoryGirl.define do
     published_at { 1.day.ago }
 
     trait :draft do
-      state :draft
+      state :unpublished
     end
     trait :empty do
       content ''

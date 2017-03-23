@@ -40,7 +40,6 @@ module APIControllerHelper
     {
       __extra_opts: {
         json: data,
-        root: 'results',
         meta: {
           current_page: data.current_page,
           total_pages: data.total_pages,

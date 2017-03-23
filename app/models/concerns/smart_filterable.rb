@@ -14,18 +14,22 @@ module SmartFilterable
       col = columns_hash[key]
       case col.type
       when :string
-        @attr_keys ||= enumerized_attributes.attributes
-        all.smart_filter_string(@attr_keys, key, val)
+        all.smart_filter_string(key, val)
       when :datetime
         all.smart_filter_datetime(key, val)
+      when :int
+        all.smart_filter_enum(key, val) if key.in? defined_enums
       else
         Rails.logger.warn "Filtering column does not exist or invalid: #{key}"
       end
     end
 
-    def smart_filter_string(attr_keys, key, val)
-      return all.where(key => val) if key.in? attr_keys
+    def smart_filter_string(key, val)
       all.where("#{key} LIKE ?", "%#{val}%")
+    end
+
+    def smart_filter_enum(key, val)
+      all.where(key => self.class.defined_enums[key][val])
     end
 
     def smart_filter_datetime(key, val)

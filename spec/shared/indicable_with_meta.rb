@@ -1,7 +1,8 @@
 shared_examples :indicable_with_meta do |model, as: nil|
   it "list #{model.to_s.underscore} correctly" do
     query ||= {}
-    create_list(model.to_s.underscore, 3)
+    model_name = model.to_s.underscore
+    create_list(model_name, 3)
 
     params = { format: :json }
     params.merge!(public_send(:as, as)) if as
@@ -10,8 +11,11 @@ shared_examples :indicable_with_meta do |model, as: nil|
 
     expect(result).to be_a(Hash)
     expect(result['meta']).not_to be_nil
-    expect(result['results']).to be_a(Array)
-    expect(result['results'].count).to be <= (query[:per]&.to_i || model.count)
+
+    key = model_name.pluralize
+    expect(result).to have_key(key)
+    expect(result[key]).to be_a(Array)
+    expect(result[key].count).to be <= (query[:per]&.to_i || model.count)
   end
 
   if as.present? && as.intern != :visitor

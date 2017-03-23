@@ -15,7 +15,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :title, index: true
       t.text :abstract
 
-      t.string :content_type
+      t.integer :content_type, default: 0
       t.text :content_source
       t.text :content_rendered
 
@@ -27,7 +27,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
       t.references :column, index: true
 
-      t.string :state, index: true
+      t.integer :state, index: true, default: 0
       t.boolean :hidden, index: true, default: false
 
       t.string :tags, array: true, default: [], index: true
@@ -96,7 +96,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
     create_table :ads do |t|
       t.string :title
-      t.string :position, index: true
+      t.integer :position, index: true, default: 0
 
       t.hstore :meta, default: '', index: true
 

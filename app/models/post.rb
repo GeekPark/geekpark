@@ -5,7 +5,7 @@
 #  id               :integer          not null, primary key
 #  title            :string
 #  abstract         :text
-#  content_type     :string
+#  content_type     :integer          default("html")
 #  content_source   :text
 #  content_rendered :text
 #  meta             :hstore           default({})
@@ -13,7 +13,7 @@
 #  link             :string
 #  picture          :string
 #  column_id        :integer
-#  state            :string
+#  state            :integer          default("unpublished")
 #  hidden           :boolean          default(FALSE)
 #  tags             :string           default([]), is an Array
 #  published_at     :datetime
@@ -45,7 +45,7 @@ class Post < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :column
-  validates_presence_of :state
+  validates_presence_of :state, :content_type
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_items, dependent: :destroy
@@ -54,8 +54,8 @@ class Post < ApplicationRecord
 
   before_save :render_content
 
-  enumerize :state, in: %i[unpublished published closed], default: :unpublished
-  enumerize :content_type, in: [:html, :markdown, :plain], default: :plain
+  enum state: [:unpublished, :published, :closed]
+  enum content_type: [:html, :markdown, :plain]
 
   DEFAULT_META = {
     paginate_per:            '20',
@@ -81,6 +81,12 @@ class Post < ApplicationRecord
     self.published_at = Time.now
     save
     incr_publishing_count
+  end
+
+  def publish_later(till:)
+    DelayedPublishJob
+      .set(wait_until: till)
+      .perform_later(self)
   end
 
   def unpublish!

@@ -29,6 +29,13 @@ visitor: &visitor
   api/v1/admin/posts#draft: deny
   api/v1/admin/posts#close: deny
 
+  api/v1/admin/columns#show: deny
+  api/v1/admin/columns#index: deny
+  api/v1/admin/columns#update: deny
+  api/v1/admin/columns#destroy: deny
+  api/v1/admin/columns#create: deny
+  api/v1/admin/columns#add_members: deny
+
 user: &user {}
 
 editor: &editor
@@ -51,12 +58,16 @@ editor: &editor
   api/v1/admin/posts#draft: allow
   api/v1/admin/posts#close: allow
 
+  api/v1/admin/columns#show: allow
+  api/v1/admin/columns#index: allow
+  api/v1/admin/columns#add_members: allow
+
 admin: &admin
   api/v1/collections#update: allow
 
-  api/v1/columns#create: allow
-  api/v1/columns#destroy: allow
-  api/v1/columns#update: allow
+  api/v1/admin/columns#destroy: allow
+  api/v1/admin/columns#create: allow
+  api/v1/admin/columns#update: allow
 
 dev: &dev
   <<: *visitor

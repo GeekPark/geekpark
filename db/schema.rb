@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20161012073710) do
 
   create_table "ads", force: :cascade do |t|
     t.string   "title"
-    t.string   "position"
+    t.integer  "position",       default: 0
     t.hstore   "meta",           default: {}
     t.string   "link"
     t.string   "picture"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20161012073710) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "abstract"
-    t.string   "content_type"
+    t.integer  "content_type",     default: 0
     t.text     "content_source"
     t.text     "content_rendered"
     t.hstore   "meta",             default: {}
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20161012073710) do
     t.string   "link"
     t.string   "picture"
     t.integer  "column_id"
-    t.string   "state"
+    t.integer  "state",            default: 0
     t.boolean  "hidden",           default: false
     t.string   "tags",             default: [],                 array: true
     t.datetime "published_at"

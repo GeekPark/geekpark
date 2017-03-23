@@ -1,6 +1,6 @@
 module API::V1::Admin
   class ColumnsController < AdminController
-    before_action :find_column, only: %i(destroy show update add_members)
+    before_action find_record, only: %i(destroy show update add_members)
 
     def index
       success(each_serializer: AdminColumnSerializer) do
@@ -11,6 +11,10 @@ module API::V1::Admin
     def create
       column = Column.create(column_params)
       created(column)
+    end
+
+    def show
+      success(@column)
     end
 
     def destroy
@@ -29,10 +33,6 @@ module API::V1::Admin
     end
 
     private
-
-    def find_column
-      @column = Post.find(params[:id] || params[:column_id])
-    end
 
     def column_params
       params.permit(:title,
