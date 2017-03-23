@@ -1,7 +1,7 @@
 module API::V1
   class CollectionsController < APIController
     resource_description { short '合集，用於特別目的，與文章呈多對多關係' }
-    before_action :find_collection,
+    before_action find_record,
                   only: %i(destroy show update reset_members add_members)
 
     api :GET, '/collections', 'Get a list of all collections'
@@ -55,10 +55,6 @@ module API::V1
     end
 
     private
-
-    def find_collection
-      @collection = Collection.find(params[:id] || params[:collection_id])
-    end
 
     def collection_params
       params.permit(:title,

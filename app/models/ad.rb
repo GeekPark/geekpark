@@ -36,6 +36,9 @@ class Ad < ApplicationRecord
               :top_right
             ]
 
+  def active?(at: Time.now)
+    active_at <= at && active_through >= at
+  end
 
   def self.currently_active
     all.where(

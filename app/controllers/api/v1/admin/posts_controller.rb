@@ -6,7 +6,7 @@ module API::V1::Admin
     api :GET, '/admin/posts', 'List posts with extra info'
     def index
       success(each_serializer: ::AdminShortPostSerializer) do
-        paginated_with_meta Post.all.includes(:column)
+        paginated_with_meta Post.all.includes(:column).new_to_old
       end
     end
 

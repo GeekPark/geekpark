@@ -2,6 +2,12 @@ module API::V1::Admin
   class ColumnsController < AdminController
     before_action :find_column, only: %i(destroy show update add_members)
 
+    def index
+      success(each_serializer: AdminColumnSerializer) do
+        paginated_with_meta Column.all.new_to_old
+      end
+    end
+
     def create
       column = Column.create(column_params)
       created(column)
@@ -25,7 +31,7 @@ module API::V1::Admin
     private
 
     def find_column
-      @olumn = Post.find(params[:id] || params[:column_id])
+      @column = Post.find(params[:id] || params[:column_id])
     end
 
     def column_params
