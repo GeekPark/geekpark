@@ -57,7 +57,7 @@ describe API::V1::CollectionsController, type: :controller do
                format: :json
              }
       }.to change { c.posts.count }.by(n)
-      expect(c.posts.pluck(:id)).to include(*posts.pluck(:id))
+      expect(c.reload.posts.pluck(:id)).to include(*posts.pluck(:id))
     end
   end
 
@@ -76,7 +76,7 @@ describe API::V1::CollectionsController, type: :controller do
                format: :json
              }
       }.to change { c.posts.count }.to(n)
-      expect(c.posts.pluck(:id)).to match_array(posts.pluck(:id))
+      expect(c.reload.posts.pluck(:id)).to match_array(posts.pluck(:id))
     end
   end
 end
