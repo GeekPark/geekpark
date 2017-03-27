@@ -28,8 +28,14 @@ class Comment < ApplicationRecord
 
   belongs_to :commentable, polymorphic: true
 
-  belongs_to :parent, class_name: 'Comment', optional: true
-  has_many :children, class_name: 'Comment', foreign_key: 'parent_id'
+  belongs_to :parent,
+             class_name: 'Comment',
+             optional: true,
+             inverse_of: :children
+  has_many :children,
+           class_name: 'Comment',
+           foreign_key: 'parent_id',
+           inverse_of: :parent
 
   enum state: [:normal, :spam]
 
