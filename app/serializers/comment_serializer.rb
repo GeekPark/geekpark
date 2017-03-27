@@ -22,18 +22,6 @@
 #  index_comments_on_user_id                              (user_id)
 #
 
-class Comment < ApplicationRecord
-  acts_as_paranoid
-
-  belongs_to :commentable, polymorphic: true
-
-  belongs_to :parent, class_name: 'Comment'
-  has_many :children, class_name: 'Comment', foreign_key: 'parent_id'
-
-  enum state: [:normal, :filtered]
-
-  validates_presence_of :commentable
-  validates_presence_of :content
-  validates_presence_of :state
-  validates_presence_of :user_id
+class CommentSerializer < ApplicationSerializer
+  attributes :id, :content, :user_id, :parent_id
 end

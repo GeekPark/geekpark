@@ -6,7 +6,7 @@ module APIFindModelHelper
     method_name = "find_#{model_name}".intern
 
     define_method method_name do
-      instance = model.find(params[:id] || params[id_field])
+      instance = model.find(params[id_field] || params[:id])
       instance_variable_set(instance_var, instance)
     end
 

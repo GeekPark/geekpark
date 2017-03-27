@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  title        :string
 #  description  :string
-#  meta         :hstore
+#  meta         :hstore           default({})
 #  content_type :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -19,7 +19,7 @@
 #  index_columns_on_title         (title)
 #
 
-class ColumnSerializer < ActiveModel::Serializer
+class ColumnSerializer < ApplicationSerializer
   attributes :id, :title, :description, :meta
 
   has_many :posts, serializer: ShortPostSerializer

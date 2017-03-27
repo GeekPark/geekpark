@@ -37,10 +37,10 @@ class BasicTables < ActiveRecord::Migration[5.0]
     end
 
     create_table :comments do |t|
-      t.string :content
+      t.string  :content
 
-      t.string :username, index: true
-      t.string :state, index: true
+      t.integer :user_id,   index: true
+      t.integer :state,     index: true, default: 0
 
       t.string  :commentable_type
       t.integer :commentable_id

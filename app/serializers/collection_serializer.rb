@@ -7,7 +7,7 @@
 #  description   :string
 #  banner        :string
 #  banner_mobile :string
-#  meta          :hstore
+#  meta          :hstore           default({})
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  deleted_at    :datetime
