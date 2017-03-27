@@ -20,6 +20,9 @@ visitor: &visitor
 
   api/v1/posts#show: allow
 
+  api/v1/comments#create: allow
+  api/v1/comments#index: allow
+
   api/v1/admin/posts#show: deny
   api/v1/admin/posts#index: deny
   api/v1/admin/posts#update: deny
@@ -35,6 +38,12 @@ visitor: &visitor
   api/v1/admin/columns#destroy: deny
   api/v1/admin/columns#create: deny
   api/v1/admin/columns#add_members: deny
+
+  api/v1/admin/comments#index: deny
+  api/v1/admin/comments#index_for_commentable: deny
+  api/v1/admin/comments#destroy: deny
+  api/v1/admin/comments#set_spam: deny
+  api/v1/admin/comments#unset_spam: deny
 
 user: &user {}
 
@@ -61,6 +70,13 @@ editor: &editor
   api/v1/admin/columns#show: allow
   api/v1/admin/columns#index: allow
   api/v1/admin/columns#add_members: allow
+
+
+  api/v1/admin/comments#index: allow
+  api/v1/admin/comments#index_for_commentable: allow
+  api/v1/admin/comments#destroy: allow
+  api/v1/admin/comments#set_spam: allow
+  api/v1/admin/comments#unset_spam: allow
 
 admin: &admin
   api/v1/collections#update: allow

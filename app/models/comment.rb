@@ -28,7 +28,7 @@ class Comment < ApplicationRecord
 
   belongs_to :commentable, polymorphic: true
 
-  belongs_to :parent, class_name: 'Comment'
+  belongs_to :parent, class_name: 'Comment', optional: true
   has_many :children, class_name: 'Comment', foreign_key: 'parent_id'
 
   enum state: [:normal, :spam]
@@ -37,4 +37,15 @@ class Comment < ApplicationRecord
   validates_presence_of :content
   validates_presence_of :state
   # validates_presence_of :user_id
+  validate :parent_must_be_consistent_on_commentable
+
+  private
+
+  def parent_must_be_consistent_on_commentable
+    return if parent_id.blank?
+    if parent.commentable_id   != commentable_id ||
+       parent.commentable_type != commentable_type
+      errors.add(:parent_id, 'can\'t reply to comment on other threads')
+    end
+  end
 end
