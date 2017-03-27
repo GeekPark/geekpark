@@ -23,6 +23,7 @@
 #
 
 class Comment < ApplicationRecord
+  include SmartFilterable
   acts_as_paranoid
 
   belongs_to :commentable, polymorphic: true
@@ -30,7 +31,7 @@ class Comment < ApplicationRecord
   belongs_to :parent, class_name: 'Comment'
   has_many :children, class_name: 'Comment', foreign_key: 'parent_id'
 
-  enum state: [:normal, :filtered]
+  enum state: [:normal, :spam]
 
   validates_presence_of :commentable
   validates_presence_of :content

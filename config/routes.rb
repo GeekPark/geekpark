@@ -18,11 +18,11 @@ Rails.application.routes.draw do
           patch :publish, :draft, :close
           get :filter, :today_statistics, on: :collection
 
-          resources :comments, only: [:index, :create]
+          get :comments, to: 'comments#index_for_commentable'
         end
 
         resources :ads do
-          resources :comments, only: [:index, :create]
+          get :comments, to: 'comments#index_for_commentable'
         end
 
         resources :columns do
@@ -32,6 +32,13 @@ Rails.application.routes.draw do
         resources :topics do
           post :members, to: 'topics#add_members'
           put  :members, to: 'topics#reset_members'
+        end
+
+        resources :comments, only: [:index, :destroy] do
+          patch  :spam, to: 'comments#set_spam'
+          delete :spam, to: 'comments#unset_spam'
+
+          get :filter, on: :collection
         end
       end
     end
