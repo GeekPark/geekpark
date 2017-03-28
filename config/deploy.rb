@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.7.2"
+lock "~> 3.8"
 
 set :application, "geekpark"
 set :repo_url, "git@github.com:GeekPark/geekpark.git"
