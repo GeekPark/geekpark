@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, except: [:new, :edit] do
-      resources :collections do
-        post :members, to: 'collections#add_members'
-        put  :members, to: 'collections#reset_members'
+      resources :collections, only: [:index, :show] do
       end
 
       resources :posts, only: [:index, :show] do
@@ -39,6 +37,11 @@ Rails.application.routes.draw do
           delete :spam, to: 'comments#unset_spam'
 
           get :filter, on: :collection
+        end
+
+        resources :collections, only: [:index, :update, :destroy] do
+          post :members, to: 'collections#add_members'
+          put  :members, to: 'collections#reset_members'
         end
       end
     end
