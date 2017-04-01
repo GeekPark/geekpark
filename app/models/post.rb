@@ -64,6 +64,10 @@ class Post < ApplicationRecord
     video_identifier:        ''
   }.freeze
 
+  scope :homepage, -> {
+    published
+  }
+
   def article?
     !video?
   end

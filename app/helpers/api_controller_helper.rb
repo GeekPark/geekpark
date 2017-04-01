@@ -2,7 +2,7 @@ module APIControllerHelper
   def success(object = nil, **opts)
     object = yield if block_given?
     extra_opts = {}
-    extra_opts = object.delete(:__extra_opts) if object.is_a?(Hash)
+    extra_opts.merge!(object.delete(:__extra_opts) || {}) if object.is_a?(Hash)
     render json: object, status: :ok, **{ **extra_opts, **opts }
   end
 
@@ -25,7 +25,7 @@ module APIControllerHelper
     keywords.each do |k, v|
       result[k] = v if v
     end
-    success(result)
+    result
   end
 
   def paginated(collection = nil, per = 10)

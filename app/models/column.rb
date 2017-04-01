@@ -30,6 +30,8 @@ class Column < ApplicationRecord
 
   enum content_type: [:normal, :video]
 
+  scope :hearsay, -> { where(title: 'hearsay') }
+
   DEFAULT_META = {
     paginate_per: '20',
     management_paginate_per: '10',

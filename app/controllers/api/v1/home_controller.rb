@@ -6,21 +6,30 @@ module API::V1
 
     api :GET, '/', 'homepage for the web'
     def web_index
-      @homepage_posts = Post.homepage.new_to_old.per(10)
+      @homepage_posts = homepage_posts
 
       @ads = []
       @columns = []
 
       @hot = []
-      @hearsay = Column.hearsay.new_to_old.per(10)
+      @hearsay = Column.hearsay.new_to_old.take(10)
 
-      variable_result(
-        :ads,
-        :columns,
-        :hot,
-        :hearsay,
-        :homepage_posts
-      )
+      success do
+        variable_result(
+          :ads,
+          :columns,
+          :hot,
+          :hearsay,
+          :homepage_posts
+        )
+      end
+    end
+
+    private
+
+    def homepage_posts(page: 1)
+      Post.homepage.new_to_old.serialized
+        # .page(page).per(10)
     end
   end
 end
