@@ -1,5 +1,7 @@
 module API::V1::Admin
   class CollectionsController < AdminController
+    resource_description { short '管理介面 合集 API' }
+
     before_action find_record,
                   only: %i(destroy show update reset_members add_members)
 

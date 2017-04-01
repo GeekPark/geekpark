@@ -3,7 +3,7 @@ module API::V1
     resource_description { short '評論' }
     before_action :find_commentable
 
-    api :GET, '(posts|ads)/:id/comments',
+    api :GET, '/(posts|ads)/:id/comments',
         'List all comments under given post or ad'
     def index
       success do
@@ -11,7 +11,7 @@ module API::V1
       end
     end
 
-    api :POST, '(posts|ads)/:id/comments', 'Post a comment'
+    api :POST, '/(posts|ads)/:id/comments', 'Post a comment'
     param :content,   String,  desc: 'Comment content', required: true
     param :parent_id, Integer, desc: 'Reply to given comment (nullable)'
     def create
