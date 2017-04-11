@@ -5,7 +5,6 @@
 #  id             :integer          not null, primary key
 #  title          :string
 #  position       :integer          default("banner")
-#  meta           :hstore           default({})
 #  link           :string
 #  picture        :string
 #  active_at      :datetime
@@ -17,7 +16,6 @@
 # Indexes
 #
 #  index_ads_on_deleted_at  (deleted_at)
-#  index_ads_on_meta        (meta)
 #  index_ads_on_position    (position)
 #
 

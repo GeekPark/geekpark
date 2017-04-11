@@ -15,7 +15,6 @@ module API::V1::Admin
       param :description, String
       param :banner, String
       param :banner_mobile, String
-      param :meta, Hash
     end
 
     api :POST, '/admin/collections', 'Create a collection'
@@ -56,8 +55,7 @@ module API::V1::Admin
       params.permit(:title,
                     :description,
                     :banner,
-                    :banner_mobile,
-                    meta: Collection::DEFAULT_META.keys)
+                    :banner_mobile)
     end
   end
 end

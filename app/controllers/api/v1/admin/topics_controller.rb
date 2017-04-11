@@ -65,8 +65,7 @@ module API::V1::Admin
 
     def topic_params
       params.permit(:title,
-                    :description,
-                    meta: Topic::DEFAULT_META.keys)
+                    :description)
     end
   end
 end

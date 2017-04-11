@@ -8,10 +8,7 @@ RSpec.describe API::V1::Admin::ColumnsController, type: :controller do
     let(:query) {
       Hash[
         title: FFaker::LoremCN.word,
-        description: FFaker::LoremCN.words(10).join,
-        meta: {
-          'theme_color': 'green'
-        }
+        description: FFaker::LoremCN.words(10).join
       ]
     }
   end
@@ -20,10 +17,7 @@ RSpec.describe API::V1::Admin::ColumnsController, type: :controller do
     let(:query) {
       Hash[
         title: '1',
-        description: '2',
-        meta: {
-          'theme_color': 'yellow'
-        }
+        description: '2'
       ]
     }
   end

@@ -27,7 +27,6 @@ module API::V1::Admin
       param :author_ids, Integer, required: true
       param :source, String, '消息來源'
       param :state, %w(unpublished published closed)
-      param :meta, Hash
     end
 
     api :POST, '/admin/posts', 'Create a post'
@@ -103,8 +102,7 @@ module API::V1::Admin
                     :picture,
                     :author_ids,
                     :source,
-                    :state,
-                    meta: Post::DEFAULT_META.keys)
+                    :state)
     end
   end
 end

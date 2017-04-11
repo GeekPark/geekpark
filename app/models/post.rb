@@ -8,7 +8,6 @@
 #  content_type     :integer          default("html")
 #  content_source   :text
 #  content_rendered :text
-#  meta             :hstore           default({})
 #  source           :string
 #  link             :string
 #  picture          :string
@@ -26,14 +25,12 @@
 #  index_posts_on_column_id   (column_id)
 #  index_posts_on_deleted_at  (deleted_at)
 #  index_posts_on_hidden      (hidden)
-#  index_posts_on_meta        (meta)
 #  index_posts_on_state       (state)
 #  index_posts_on_tags        (tags)
 #  index_posts_on_title       (title)
 #
 
 class Post < ApplicationRecord
-  include HasMeta
   include SmartFilterable
   include Countable
   include ProcessPostMeta
@@ -65,7 +62,7 @@ class Post < ApplicationRecord
   end
 
   def video?
-    meta['video_provider'].present?
+    settings.video?
   end
 
   def content

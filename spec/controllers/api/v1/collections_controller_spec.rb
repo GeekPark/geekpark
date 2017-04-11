@@ -26,7 +26,6 @@ describe API::V1::CollectionsController, type: :controller do
     it 'show collection correctly for managers' do
       c = collections.first
       get :show, params: { id: c.id, **as(:admin) }
-      expect(result['collection']).to include('meta')
     end
   end
 

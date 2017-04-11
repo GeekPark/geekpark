@@ -56,8 +56,7 @@ module API::V1::Admin
     def column_params
       params.permit(:title,
                     :description,
-                    :content_type,
-                    meta: Column::DEFAULT_META.keys)
+                    :content_type)
     end
   end
 end

@@ -8,7 +8,6 @@
 #  content_type     :integer          default("html")
 #  content_source   :text
 #  content_rendered :text
-#  meta             :hstore           default({})
 #  source           :string
 #  link             :string
 #  picture          :string
@@ -26,7 +25,6 @@
 #  index_posts_on_column_id   (column_id)
 #  index_posts_on_deleted_at  (deleted_at)
 #  index_posts_on_hidden      (hidden)
-#  index_posts_on_meta        (meta)
 #  index_posts_on_state       (state)
 #  index_posts_on_tags        (tags)
 #  index_posts_on_title       (title)
@@ -38,7 +36,6 @@ class PostSerializer < ApplicationSerializer
              :abstract,
              :content_type,
              :content,
-             :meta,
              :source,
              :link,
              :picture,
