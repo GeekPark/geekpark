@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
+gem 'rails-settings-cached'
+
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-attack'
 gem 'sidekiq'
@@ -48,6 +51,9 @@ gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
 gem 'enumerize'
 gem 'kaminari' # pagination
 gem 'paranoia', '~> 2.2.0.pre' # soft deletion
+
+# for parsing html
+gem 'nokogiri'
 
 # for generating api doc
 gem 'apipie-rails'
@@ -96,4 +102,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-

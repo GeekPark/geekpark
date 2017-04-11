@@ -1,0 +1,15 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  column_names:
+    zaozhidao: '极客早知道'
+    tushang: '图赏'
+    hearsay: '道聽途說'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

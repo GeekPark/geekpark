@@ -227,6 +227,8 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     railties (5.0.2)
       actionpack (= 5.0.2)
       activesupport (= 5.0.2)
@@ -350,12 +352,14 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   meta_request
+  nokogiri
   paranoia (~> 2.2.0.pre)
   pg
   puma (~> 3.0)
   rack-attack
   rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-settings-cached
   redcarpet
   redis
   rspec-collection_matchers

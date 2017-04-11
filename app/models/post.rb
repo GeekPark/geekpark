@@ -36,6 +36,7 @@ class Post < ApplicationRecord
   include HasMeta
   include SmartFilterable
   include Countable
+  include ProcessPostMeta
 
   acts_as_paranoid
 
@@ -57,16 +58,7 @@ class Post < ApplicationRecord
   enum state: [:unpublished, :published, :closed]
   enum content_type: [:html, :markdown, :plain]
 
-  DEFAULT_META = {
-    paginate_per:            '20',
-    management_paginate_per: '10',
-    video_provider:          '',
-    video_identifier:        ''
-  }.freeze
-
-  scope :homepage, -> {
-    published
-  }
+  scope :homepage, -> { published }
 
   def article?
     !video?
