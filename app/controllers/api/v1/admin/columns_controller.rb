@@ -22,7 +22,7 @@ module API::V1::Admin
     api :POST, '/admin/columns', 'Create a column'
     param_group :column_params
     def create
-      column = Column.create(column_params)
+      column = Column.create!(column_params)
       created(column)
     end
 
@@ -33,14 +33,14 @@ module API::V1::Admin
 
     api :DELETE, '/admin/columns/:id', 'Destroy a column'
     def destroy
-      @column.destroy
+      @column.destroy!
       updated
     end
 
     api :POST, '/admin/columns/:id', 'Update a column'
     param_group :column_params
     def update
-      @column.update_attributes(column_params)
+      @column.update_attributes!(column_params)
       updated
     end
 

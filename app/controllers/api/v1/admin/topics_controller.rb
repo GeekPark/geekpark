@@ -22,20 +22,20 @@ module API::V1::Admin
     api :POST, '/admin/topics', 'Create a topic'
     param_group :topic_params
     def create
-      topic = Topic.create(topic_params)
+      topic = Topic.create!(topic_params)
       created(topic)
     end
 
     api :DELETE, '/admin/topics/:id', 'Destroy a topic'
     def destroy
-      @topic.destroy
+      @topic.destroy!
       updated
     end
 
     api :PUT, '/admin/topics/:id', 'Modify a topic'
     param_group :topic_params
     def update
-      @topic.update_attributes(topic_params)
+      @topic.update_attributes!(topic_params)
       updated
     end
 

@@ -20,20 +20,20 @@ module API::V1::Admin
     api :POST, '/admin/collections', 'Create a collection'
     param_group :collection_params
     def create
-      collection = Collection.create(collection_params)
+      collection = Collection.create!(collection_params)
       created(collection)
     end
 
     api :DELETE, '/admin/collections/:id', 'Destroy a collection'
     def destroy
-      @collection.destroy
+      @collection.destroy!
       updated
     end
 
     api :PATCH, '/admin/collections/:id', 'modify collection properties'
     param_group :collection_params
     def update
-      @collection.update_attributes(collection_params)
+      @collection.update_attributes!(collection_params)
       updated
     end
 

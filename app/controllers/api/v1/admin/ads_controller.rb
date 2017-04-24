@@ -23,7 +23,7 @@ module API::V1::Admin
     api :POST, '/admin/ads', 'Create an ad'
     param_group :ad_params
     def create
-      created Ad.create(ad_params)
+      created Ad.create!(ad_params)
     end
 
     api :GET, '/admin/ads/:id', 'Show details for an ad'
@@ -34,13 +34,13 @@ module API::V1::Admin
     api :PUT, '/admin/ads/:id', 'Modify an ad'
     param_group :ad_params
     def update
-      Ad.update_attributes(ad_params)
+      Ad.update_attributes!(ad_params)
       updated
     end
 
     api :DELETE, '/admin/ads/:id', 'Modify an ad'
     def destroy
-      @ad.destroy
+      @ad.destroy!
       updated
     end
 

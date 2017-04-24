@@ -33,7 +33,7 @@ module API::V1::Admin
     param_group :post_params
     param :auto_publish_at, Time, desc: '定時發布的文章'
     def create
-      post = Post.create(post_params)
+      post = Post.create!(post_params)
 
       if params[:auto_publish_at]
         till = Time.parse(params[:auto_publish_at])
@@ -71,7 +71,7 @@ module API::V1::Admin
     end
 
     def update
-      @post.update_attributes(post_params)
+      @post.update_attributes!(post_params)
       updated
     end
 
@@ -86,7 +86,7 @@ module API::V1::Admin
     end
 
     def destroy
-      @post.destroy
+      @post.destroy!
       updated
     end
 
