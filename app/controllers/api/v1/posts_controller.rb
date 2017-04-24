@@ -17,5 +17,10 @@ module API::V1
     def hot_in_week
       success(Post.order_by_click_count(7.days).take(7))
     end
+
+    def index_by_tag
+      tag = params[:tag]
+      success { Post.with_tag(tag).published }
+    end
   end
 end

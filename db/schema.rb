@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.string   "title"
     t.text     "abstract"
     t.integer  "content_type",     default: 0
+    t.integer  "type",             default: 0
     t.text     "content_source"
     t.text     "content_rendered"
     t.string   "source"
@@ -120,6 +121,17 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "post_count", default: 0
+    t.datetime "used_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_tags_on_deleted_at", using: :btree
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
   create_table "topic_items", force: :cascade do |t|

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
       resources :posts, only: [:index, :show] do
         resources :comments, only: [:index, :create]
+        get 'by-tag/:tag', to: 'posts#index_by_tag', on: :collection
       end
       resources :columns, only: [:index, :show]
 
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
 
           get :comments, to: 'comments#index_for_commentable'
         end
+
+        get 'tags/filter', to: 'tags#filter'
 
         resources :ads do
           get :comments, to: 'comments#index_for_commentable'

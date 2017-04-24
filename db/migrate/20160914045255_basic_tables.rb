@@ -16,6 +16,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.text :abstract
 
       t.integer :content_type, default: 0
+      t.integer :type, default: 0
       t.text :content_source
       t.text :content_rendered
 
@@ -105,6 +106,16 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.integer :count
       t.timestamps
     end
+
+    create_table :tags do |t|
+      t.string :name
+
+      t.integer :post_count, default: 0
+      t.datetime :used_at
+      t.timestamps
+    end
+    add_index :tags, :name, unique: true
+
     add_index :counts, [:countable_id, :countable_type]
   end
 end

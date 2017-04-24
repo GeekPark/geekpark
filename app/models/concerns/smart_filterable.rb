@@ -8,10 +8,8 @@ module SmartFilterable
       end
     end
 
-    private
-
     def smart_filter_key_val(key, val)
-      col = columns_hash[key]
+      col = columns_hash[key.to_s]
       case col.type
       when :string
         all.smart_filter_string(key, val)

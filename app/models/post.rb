@@ -6,6 +6,7 @@
 #  title            :string
 #  abstract         :text
 #  content_type     :integer          default("html")
+#  type             :integer          default("text")
 #  content_source   :text
 #  content_rendered :text
 #  source           :string
@@ -41,6 +42,10 @@ class Post < ApplicationRecord
   add_instance_counter_for :publishing
   add_instance_counter_for :sharing
 
+  include ActiveSupport::Callbacks
+  define_callbacks :publish
+  define_callbacks :unpublish
+
   validates_presence_of :title
   validates_presence_of :column
   validates_presence_of :state, :content_type
@@ -51,11 +56,17 @@ class Post < ApplicationRecord
   belongs_to :column
 
   before_save :render_content
+  set_callback :publish,   :after, -> { incr_publishing_count }
+  set_callback :unpublish, :after, -> { incr_publishing_count(-1) }
+  set_callback :publish,   :after, -> { Tag.touch(tags) }
+  set_callback :unpublish, :after, -> { Tag.untouch(tags) }
 
   enum state: [:unpublished, :published, :closed]
   enum content_type: [:html, :markdown, :plain]
+  enum type: [:text, :video, :recommend]
 
   scope :homepage, -> { published }
+  scope :with_tag, ->(tag) { where('? = ANY(tags)', tag) }
 
   def article?
     !video?
@@ -70,10 +81,11 @@ class Post < ApplicationRecord
   end
 
   def publish!
-    self.state = :published
-    self.published_at = Time.now
-    save
-    incr_publishing_count
+    run_callbacks :publish do
+      self.state = :published
+      self.published_at = Time.now
+      save!
+    end
   end
 
   def publish_later(till:)
@@ -83,10 +95,11 @@ class Post < ApplicationRecord
   end
 
   def unpublish!
-    self.state = :unpublished
-    self.published_at = nil
-    save
-    incr_publishing_count(-1)
+    run_callbacks :unpublish do
+      self.state = :unpublished
+      self.published_at = nil
+      save!
+    end
   end
 
   def close!
