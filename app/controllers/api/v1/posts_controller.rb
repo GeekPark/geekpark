@@ -18,6 +18,7 @@ module API::V1
       success(Post.order_by_click_count(7.days).take(7))
     end
 
+    api :GET, '/posts/by-tag/:tag', 'Show a list of posts with given tag'
     def index_by_tag
       tag = params[:tag]
       success { Post.with_tag(tag).published }
