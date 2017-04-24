@@ -15,5 +15,8 @@
 #
 
 class AdminCommentSerializer < CommentSerializer
-  attributes :commentable_type, :commentable_id, :state
+  attributes :commentable_type,
+             :commentable_id,
+             :state,
+             :commentable_title
 end

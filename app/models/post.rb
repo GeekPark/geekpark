@@ -6,7 +6,7 @@
 #  title            :string
 #  abstract         :text
 #  content_type     :integer          default("html")
-#  type             :integer          default("text")
+#  post_type        :integer          default("text")
 #  content_source   :text
 #  content_rendered :text
 #  source           :string
@@ -63,7 +63,7 @@ class Post < ApplicationRecord
 
   enum state: [:unpublished, :published, :closed]
   enum content_type: [:html, :markdown, :plain]
-  enum type: [:text, :video, :recommend]
+  enum post_type: [:text, :video]
 
   scope :homepage, -> { published }
   scope :with_tag, ->(tag) { where('? = ANY(tags)', tag) }
@@ -73,7 +73,7 @@ class Post < ApplicationRecord
   end
 
   def video?
-    settings.video?
+    post_type == :video
   end
 
   def content

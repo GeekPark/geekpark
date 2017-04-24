@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.string   "title"
     t.text     "abstract"
     t.integer  "content_type",     default: 0
-    t.integer  "type",             default: 0
+    t.integer  "post_type",        default: 0
     t.text     "content_source"
     t.text     "content_rendered"
     t.string   "source"

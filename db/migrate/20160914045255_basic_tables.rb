@@ -16,7 +16,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.text :abstract
 
       t.integer :content_type, default: 0
-      t.integer :type, default: 0
+      t.integer :post_type, default: 0
       t.text :content_source
       t.text :content_rendered
 

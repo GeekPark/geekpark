@@ -45,6 +45,10 @@ class Comment < ApplicationRecord
   # validates_presence_of :user_id
   validate :parent_must_be_consistent_on_commentable
 
+  def commentable_title
+    commentable.try(:title)
+  end
+
   private
 
   def parent_must_be_consistent_on_commentable
