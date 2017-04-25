@@ -23,5 +23,5 @@
 #
 
 class CommentSerializer < ApplicationSerializer
-  attributes :id, :content, :user_id, :parent_id
+  attributes :id, :content, :user_id, :parent_id, :created_at
 end

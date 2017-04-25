@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :ad do
     title { FFaker::LoremCN.words(3).join }
-    position { Ad.position.values.sample }
+    position { Ad.positions.keys.sample }
     link 't66y.com'
     active_at      { Time.now - 3.days }
     active_through { Time.now - 1.minute }

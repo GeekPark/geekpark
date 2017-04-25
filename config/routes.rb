@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         end
 
         get 'tags/filter', to: 'tags#filter'
+        get 'permissions', to: 'users#permissions'
 
         resources :ads do
           get :comments, to: 'comments#index_for_commentable'
