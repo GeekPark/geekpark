@@ -2,7 +2,7 @@ source 'https://gems.ruby-china.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0.0'
 
 # Use postgres as database
 gem 'pg'
@@ -50,7 +50,7 @@ gem 'cant_cant_cant', github: 'shouya/cant_cant_cant' # authentication
 # gem 'cant_cant_cant', path: '~/project/cant_cant_cant'
 gem 'enumerize'
 gem 'kaminari' # pagination
-gem 'paranoia', '~> 2.2.0.pre' # soft deletion
+gem 'paranoia'
 
 # for parsing html
 gem 'nokogiri'
@@ -58,12 +58,15 @@ gem 'nokogiri'
 # for generating api doc
 gem 'apipie-rails'
 
+# for uploading files
+gem 'carrierwave'
+gem 'mini_magick'
+
+# for debugging
 gem 'awesome_print'
+gem 'byebug', platform: :mri
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution
-  #   and get a debugger console
-  gem 'byebug', platform: :mri
   gem 'ffaker'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
