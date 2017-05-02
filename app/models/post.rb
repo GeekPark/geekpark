@@ -80,7 +80,7 @@ class Post < ApplicationRecord
   end
 
   def cover_url
-    cover.file.url
+    cover&.file&.url
   end
 
   def content
