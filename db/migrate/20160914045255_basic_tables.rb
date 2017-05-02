@@ -100,8 +100,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
     end
 
     create_table :counts do |t|
-      t.string  :countable_type
-      t.integer :countable_id
+      t.references :countable, polymorphic: true, index: true
 
       t.integer :count
       t.timestamps
@@ -116,6 +115,10 @@ class BasicTables < ActiveRecord::Migration[5.0]
     end
     add_index :tags, :name, unique: true
 
-    add_index :counts, [:countable_id, :countable_type]
+    create_table :images do |t|
+      t.string :file
+      t.string :usage
+      t.timestamps
+    end
   end
 end

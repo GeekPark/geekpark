@@ -99,6 +99,7 @@ module API::V1::Admin
                     :content_type,
                     :tags,
                     :column_id,
+                    :cover_id,
                     :picture,
                     :author_ids,
                     :source,

@@ -46,7 +46,6 @@ all: &all
 
 
 visitor: &visitor
-  <<: *all
   api/v1/ads#index: allow
 
   api/v1/collections#show: allow
@@ -61,11 +60,9 @@ visitor: &visitor
   api/v1/comments#create: allow
   api/v1/comments#index: allow
 
-user: &user
-  <<: *all
+user: &user {}
 
 editor: &editor
-  <<: *all
   api/v1/collections#index: allow
   api/v1/collections#reset_members: allow
   api/v1/collections#add_members: allow
@@ -97,7 +94,6 @@ editor: &editor
   api/v1/admin/comments#unset_spam: allow
 
 admin: &admin
-  <<: *all
   api/v1/collections#update: allow
 
   api/v1/admin/columns#destroy: allow

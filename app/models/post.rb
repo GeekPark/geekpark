@@ -55,6 +55,8 @@ class Post < ApplicationRecord
   has_many :collections, through: :collection_items
   belongs_to :column
 
+  belongs_to :cover, class_name: 'Image'
+
   before_save :render_content
   set_callback :publish,   :after, -> { incr_publishing_count }
   set_callback :unpublish, :after, -> { incr_publishing_count(-1) }
@@ -67,6 +69,7 @@ class Post < ApplicationRecord
 
   scope :homepage, -> { published }
   scope :with_tag, ->(tag) { where('? = ANY(tags)', tag) }
+  scope :with_cover, -> { includes(:cover) }
 
   def article?
     !video?
@@ -74,6 +77,10 @@ class Post < ApplicationRecord
 
   def video?
     post_type == :video
+  end
+
+  def cover_url
+    cover.file.url
   end
 
   def content

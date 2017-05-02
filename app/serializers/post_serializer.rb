@@ -36,6 +36,7 @@ class PostSerializer < ApplicationSerializer
              :abstract,
              :content_type,
              :content,
+             :cover_url,
              :source,
              :link,
              :picture,

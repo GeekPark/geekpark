@@ -22,3 +22,5 @@
 .env
 
 coverage/
+public/uploads/
+

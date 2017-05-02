@@ -47,6 +47,8 @@ Rails.application.routes.draw do
           post :members, to: 'collections#add_members'
           put  :members, to: 'collections#reset_members'
         end
+
+        resources :images, only: :create
       end
     end
   end

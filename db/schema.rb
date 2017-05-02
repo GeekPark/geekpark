@@ -84,7 +84,14 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.integer  "count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["countable_id", "countable_type"], name: "index_counts_on_countable_id_and_countable_type", using: :btree
+    t.index ["countable_type", "countable_id"], name: "index_counts_on_countable_type_and_countable_id", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "file"
+    t.string   "usage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|

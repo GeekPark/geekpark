@@ -20,7 +20,7 @@ shared_examples :destructible do |factory, as: nil|
       expect {
         delete :destroy, params: params
         expect(response).not_to be_success
-      }.not_to change { object.class.count }
+      }.not_to(change { object.class.count })
     end
   end
 end

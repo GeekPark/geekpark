@@ -11,7 +11,7 @@
 #
 # Indexes
 #
-#  index_counts_on_countable_id_and_countable_type  (countable_id,countable_type)
+#  index_counts_on_countable_type_and_countable_id  (countable_type,countable_id)
 #
 
 class Count < ApplicationRecord
