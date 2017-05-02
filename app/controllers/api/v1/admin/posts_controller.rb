@@ -12,7 +12,7 @@ module API::V1::Admin
 
     api :GET, '/admin/posts/:id', 'Show a specific post'
     def show
-      success(@post)
+      success(serializer: ::AdminPostSerializer) { @post }
     end
 
     def_param_group :post_params do

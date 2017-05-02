@@ -30,17 +30,10 @@
 #  index_posts_on_title       (title)
 #
 
-class PostSerializer < ApplicationSerializer
-  attributes :id,
-             :title,
-             :abstract,
-             :content,
-             :cover_url,
-             :source,
-             :link,
-             :picture,
-             :tags,
-             :published_at
-
-  has_one :column
+class AdminPostSerializer < PostSerializer
+  attributes :content_type,
+             :content_source,
+             :created_at,
+             :updated_at,
+             :state
 end
