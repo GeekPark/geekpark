@@ -17,8 +17,7 @@ describe API::V1::Admin::CollectionsController, type: :controller do
         title: '1',
         description: '2',
         banner: '3',
-        banner_mobile: '4',
-        meta: { 'paginate_per' => '100' }
+        banner_mobile: '4'
       ]
     }
   end
@@ -26,7 +25,7 @@ describe API::V1::Admin::CollectionsController, type: :controller do
   describe 'add_members' do
     it 'add members correctly' do
       n = 3
-      c = create(:collection, :with_posts)
+      c = create(:collection)
       posts = create_list(:post, n)
 
       expect {

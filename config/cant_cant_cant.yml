@@ -93,6 +93,11 @@ editor: &editor
   api/v1/admin/comments#set_spam: allow
   api/v1/admin/comments#unset_spam: allow
 
+  api/v1/admin/collections#create: allow
+  api/v1/admin/collections#destroy: allow
+  api/v1/admin/collections#add_members: allow
+  api/v1/admin/collections#reset_members: allow
+
 admin: &admin
   api/v1/collections#update: allow
 
@@ -104,7 +109,7 @@ admin: &admin
   api/v1/admin/collections#create: deny
   api/v1/admin/collections#destroy: deny
   api/v1/admin/collections#reset_members: deny
-  api/v1/admin/collections#update: deny
+  api/v1/admin/collections#update: allow
 
 dev: &dev
   <<: *all
