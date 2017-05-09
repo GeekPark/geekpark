@@ -27,6 +27,7 @@ class Tag < ApplicationRecord
   scope :order_by_last_used, -> { order(used_at: :desc) }
 
   def self.touch(tags)
+    return if tags.empty?
     conn = ActiveRecord::Base.connection
     now = conn.quote(Time.now)
     header = 'INSERT INTO tags ' \

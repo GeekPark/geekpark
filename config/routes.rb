@@ -43,7 +43,7 @@ Rails.application.routes.draw do
           get :filter, on: :collection
         end
 
-        resources :collections, only: [:index, :update, :destroy] do
+        resources :collections, only: [:index, :update, :destroy, :create] do
           post :members, to: 'collections#add_members'
           put  :members, to: 'collections#reset_members'
         end
