@@ -73,6 +73,9 @@ group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'guard-rspec', require: false
   gem 'rubocop', require: false
+
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
