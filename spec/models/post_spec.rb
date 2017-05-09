@@ -3,16 +3,6 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   let(:post) { create(:post) }
 
-  it 'is video iff video_provider is provided' do
-    # post.settings[:video?] = false
-    expect(post.article?).to be_truthy
-    expect(post.video?).to be_falsey
-
-    post.settings[:video?] = true
-    expect(post.article?).to be_falsey
-    expect(post.video?).to be_truthy
-  end
-
   it 'renders markdown' do
     post.content_type = 'markdown'
     post.content_source = '**bold** _italic_ `code`'
