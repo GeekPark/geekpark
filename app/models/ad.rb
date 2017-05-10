@@ -6,7 +6,7 @@
 #  title          :string
 #  position       :integer          default("banner")
 #  link           :string
-#  picture        :string
+#  cover_id       :integer
 #  active_at      :datetime
 #  active_through :datetime
 #  created_at     :datetime         not null
@@ -15,6 +15,7 @@
 #
 # Indexes
 #
+#  index_ads_on_cover_id    (cover_id)
 #  index_ads_on_deleted_at  (deleted_at)
 #  index_ads_on_position    (position)
 #
@@ -26,6 +27,8 @@ class Ad < ApplicationRecord
 
   add_instance_counter_for :click
   add_instance_counter_for :view
+
+  belongs_to :cover, class_name: 'Image'
 
   enum position: [:banner, :logo, :top_left, :top_right]
 

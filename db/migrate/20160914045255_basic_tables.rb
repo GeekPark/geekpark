@@ -22,7 +22,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
       t.string :source
       t.string :link
-      t.string :picture
+      t.integer :cover_id
 
       t.references :column, index: true
 
@@ -81,8 +81,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :title, index: true
       t.string :description
 
-      t.string :banner
-      t.string :banner_mobile
+      t.integer :banner_id, index: true
 
       t.timestamps
     end
@@ -92,7 +91,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.integer :position, index: true, default: 0
 
       t.string :link
-      t.string :picture
+      t.integer :cover_id, index: true
 
       t.datetime :active_at
       t.datetime :active_through

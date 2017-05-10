@@ -11,7 +11,7 @@
 #  content_rendered :text
 #  source           :string
 #  link             :string
-#  picture          :string
+#  cover_id         :integer
 #  column_id        :integer
 #  state            :integer          default("unpublished")
 #  hidden           :boolean          default(FALSE)
