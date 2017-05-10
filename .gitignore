@@ -24,3 +24,4 @@
 coverage/
 public/uploads/
 
+config/app.yml
