@@ -15,9 +15,7 @@ describe API::V1::Admin::CollectionsController, type: :controller do
     let(:query) {
       Hash[
         title: '1',
-        description: '2',
-        banner: '3',
-        banner_mobile: '4'
+        description: '2'
       ]
     }
   end
