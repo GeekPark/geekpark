@@ -28,7 +28,7 @@ module SmartFilterable
     end
 
     def smart_filter_enum(key, val)
-      all.where(key => self.defined_enums[key][val])
+      all.where(key => defined_enums[key][val])
     end
 
     def smart_filter_datetime(key, val)
