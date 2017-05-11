@@ -13,14 +13,15 @@ describe Countable do
   end
 
   it "should define incr_action_count correctly" do
-    expect { @post.incr_click_count }.to change{@post.click_counts.count}.by(1)
+    expect { @post.incr_click_count }.to change { @post.click_counts.count }
+      .by(1)
     expect(@post.click_counts.first.countable).to eq(@post)
   end
 
   it "should define order_by_action_count correctly" do
-    first = Post.first.incr_click_count(2)
-    last = Post.last.incr_click_count(1)
-    result = [Post.first,Post.last]
+    Post.first.incr_click_count(2)
+    Post.last.incr_click_count(1)
+    result = [Post.first, Post.last]
     expect(Post.order_by_click_count).to eq(result)
   end
 
