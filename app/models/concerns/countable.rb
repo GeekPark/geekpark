@@ -11,8 +11,8 @@ module Countable
                dependent: :destroy,
                inverse_of: :countable)
 
-      define_method "incr_#{action}_count" do
-        Count.create(countable: self, count: 1)
+      define_method "incr_#{action}_count" do |count = 1|
+        Count.create(countable: self, count: count)
       end
 
       define_singleton_method "order_by_#{action}_count" do
