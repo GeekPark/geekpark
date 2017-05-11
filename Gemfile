@@ -74,7 +74,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'rubocop', require: false
   gem 'shoulda'
-
   gem 'pry'
   gem 'pry-byebug'
 end
