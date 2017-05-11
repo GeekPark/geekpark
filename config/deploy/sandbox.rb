@@ -9,9 +9,8 @@
 server 'geeklab', roles: %w[app db web]
 
 set :user, 'shou'
-set :stage, :production
-set :rails_env, :production
-set :rack_env, :production
+set :rails_env, :development
+set :rack_env,  :development
 
 set :repo_url, "file:///home/#{fetch(:user)}/gitrepo/#{fetch(:application)}.git"
 set :deploy_to, "/home/#{fetch(:user)}/projects/#{fetch(:application)}"
@@ -25,6 +24,8 @@ set :puma_preload_app,        true
 set :puma_worker_timeout,     nil
 set :puma_init_active_record, true
 
+
+set :bundle_without, nil
 
 # role-based syntax
 # ==================
@@ -82,4 +83,3 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
 end
-

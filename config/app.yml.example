@@ -5,8 +5,14 @@ defaults: &defaults
     tushang: '图赏'
     hearsay: '道聽途說'
 
+  cors_allowed_origins:
+  - geekpark.net
+  - '*.geekpark.net'
+
 development:
   <<: *defaults
+  cors_allowed_origins:
+  - localhost:3000
 
 test:
   <<: *defaults

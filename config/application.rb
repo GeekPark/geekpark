@@ -14,7 +14,6 @@ module Geekpark
     end
 
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Cors
 
     config.active_job.queue_adapter = :sidekiq
   end
