@@ -9,13 +9,14 @@ module SmartFilterable
     end
 
     def smart_filter_key_val(key, val)
-      col = columns_hash[key.to_s]
+      key = key.to_s
+      col = columns_hash[key]
       case col.type
       when :string
         all.smart_filter_string(key, val)
       when :datetime
         all.smart_filter_datetime(key, val)
-      when :int
+      when :integer
         all.smart_filter_enum(key, val) if key.in? defined_enums
       else
         Rails.logger.warn "Filtering column does not exist or invalid: #{key}"
@@ -27,7 +28,7 @@ module SmartFilterable
     end
 
     def smart_filter_enum(key, val)
-      all.where(key => self.class.defined_enums[key][val])
+      all.where(key => self.defined_enums[key][val])
     end
 
     def smart_filter_datetime(key, val)
