@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe SmartFilterable do
   before(:all) do
-    FactoryGirl.create(:comment)
-    FactoryGirl.create(:post)
+    create(:comment)
+    create(:post)
   end
 
   it "can filter string correctly" do
@@ -13,8 +13,9 @@ describe SmartFilterable do
 
   it "can filter datetime correctly" do
     result = Post.smart_filter(created_at: "today")
-    expect(result).to eq(Post.all.where(created_at: \
-      Date.today.beginning_of_day..Date.today.end_of_day))
+    within_today = Date.today.beginning_of_day..Date.today.end_of_day
+    todays_posts = Post.where(created_at: within_today)
+    expect(result.pluck(:id)).to match_array(todays_posts.pluck(:id))
   end
 
   it "can filter enum correctly" do
