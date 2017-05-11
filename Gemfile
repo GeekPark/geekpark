@@ -72,7 +72,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'guard-rspec', require: false
-  gem 'shoulda'
   gem 'pry'
   gem 'pry-byebug'
 end
@@ -103,6 +102,7 @@ end
 group :test do
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: nil
+  gem 'shoulda'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
