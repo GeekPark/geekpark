@@ -23,7 +23,7 @@ class Collection < ApplicationRecord
   has_many :collection_items, dependent: :destroy
   has_many :posts, through: :collection_items
 
-  belongs_to :banner, class_name: 'Image'
+  image_field :banner
 
   validates_presence_of :title
   validates_presence_of :description

@@ -28,7 +28,7 @@ class Ad < ApplicationRecord
   add_instance_counter_for :click
   add_instance_counter_for :view
 
-  belongs_to :cover, class_name: 'Image'
+  image_field :cover
 
   enum position: [:banner, :logo, :top_left, :top_right]
 
