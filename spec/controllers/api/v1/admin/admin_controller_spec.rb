@@ -5,7 +5,7 @@ describe API::V1::Admin::AdminController, type: :controller do
     def test
       test_post = Post.new
       test_post.errors.add(:test, "test")
-      raise ActiveRecord::RecordInvalid.new(test_post)
+      raise ActiveRecord::RecordInvalid, test_post
     end
   end
 
