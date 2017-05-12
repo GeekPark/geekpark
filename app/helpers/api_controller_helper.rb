@@ -11,7 +11,7 @@ module APIControllerHelper
     render(json: { id: object.id }, status: :created)
   end
 
-  def error(type, info = nil, message:, status: 400)
+  def error(type, info = nil, message: nil, status: 400)
     render json: {
              errors: {
                type: type,
