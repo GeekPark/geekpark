@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Countable do
-  before(:all) do
+  before(:each) do
     create_list(:post, 20)
     @post = Post.last
   end

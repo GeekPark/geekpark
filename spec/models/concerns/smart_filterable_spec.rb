@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe SmartFilterable do
-  before(:all) do
+  before(:each) do
     create(:comment)
     create(:post)
   end
