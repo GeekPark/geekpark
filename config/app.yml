@@ -1,0 +1,21 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  column_names:
+    zaozhidao: '极客早知道'
+    tushang: '图赏'
+    hearsay: '道聽途說'
+
+  cors_allowed_origins:
+  - geekpark.net
+  - '*.geekpark.net'
+
+development:
+  <<: *defaults
+  cors_allowed_origins:
+  - localhost:3000
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
