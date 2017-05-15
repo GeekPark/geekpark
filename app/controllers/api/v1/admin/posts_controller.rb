@@ -23,7 +23,7 @@ module API::V1::Admin
       param :content_source, String, desc: '正文'
       param :tags, Array, of: String
       param :column_id, Integer, required: true
-      param :picture, String
+      param :cover_id, Integer, desc: '封面圖片'
       param :author_ids, Integer, required: true
       param :source, String, '消息來源'
       param :state, %w(unpublished published closed)
@@ -100,7 +100,6 @@ module API::V1::Admin
                     :tags,
                     :column_id,
                     :cover_id,
-                    :picture,
                     :author_ids,
                     :source,
                     :state)

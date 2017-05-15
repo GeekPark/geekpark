@@ -15,7 +15,7 @@ module API::V1::Admin
       param :title, String, required: true
       param :position, Ad.positions.keys, desc: '廣告位置'
       param :link, String, desc: '廣告的目標鏈接'
-      param :picture, String, desc: '廣告圖片'
+      param :cover_id, Integer, desc: '廣告圖片'
       param :active_at, DateTime, desc: '廣告展示生效時間'
       param :active_through, DateTime, desc: '廣告展示結束時間'
     end
@@ -51,7 +51,7 @@ module API::V1::Admin
         :title,
         :position,
         :link,
-        :picture,
+        :cover_id,
         :active_at,
         :active_through
       )

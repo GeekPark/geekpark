@@ -11,7 +11,7 @@
 #  content_rendered :text
 #  source           :string
 #  link             :string
-#  picture          :string
+#  cover_id         :integer
 #  column_id        :integer
 #  state            :integer          default("unpublished")
 #  hidden           :boolean          default(FALSE)
@@ -55,7 +55,7 @@ class Post < ApplicationRecord
   has_many :collections, through: :collection_items
   belongs_to :column
 
-  belongs_to :cover, class_name: 'Image'
+  image_field :cover
 
   before_save :render_content
   set_callback :publish,   :after, -> { incr_publishing_count }

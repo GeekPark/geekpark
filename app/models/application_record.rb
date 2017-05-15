@@ -2,6 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   extend Enumerize
+  include HasImageField
 
   def self.new_to_old
     all.order(created_at: :desc)

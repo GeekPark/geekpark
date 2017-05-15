@@ -38,7 +38,6 @@ class PostSerializer < ApplicationSerializer
              :cover_url,
              :source,
              :link,
-             :picture,
              :tags,
              :published_at
 
