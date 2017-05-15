@@ -3,7 +3,7 @@ class AdminAdSerializer < ApplicationSerializer
              :title,
              :position,
              :link,
-             :picture,
+             :cover_url,
              :active_at,
              :active_through,
              :is_active

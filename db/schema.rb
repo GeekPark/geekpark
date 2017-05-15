@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.string   "title"
     t.integer  "position",       default: 0
     t.string   "link"
-    t.string   "picture"
+    t.integer  "cover_id"
     t.datetime "active_at"
     t.datetime "active_through"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
+    t.index ["cover_id"], name: "index_ads_on_cover_id", using: :btree
     t.index ["deleted_at"], name: "index_ads_on_deleted_at", using: :btree
     t.index ["position"], name: "index_ads_on_position", using: :btree
   end
@@ -40,11 +41,11 @@ ActiveRecord::Schema.define(version: 20170410165313) do
   create_table "collections", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "banner"
-    t.string   "banner_mobile"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "banner_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.datetime "deleted_at"
+    t.index ["banner_id"], name: "index_collections_on_banner_id", using: :btree
     t.index ["deleted_at"], name: "index_collections_on_deleted_at", using: :btree
     t.index ["title"], name: "index_collections_on_title", using: :btree
   end
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.text     "content_rendered"
     t.string   "source"
     t.string   "link"
-    t.string   "picture"
+    t.integer  "cover_id"
     t.integer  "column_id"
     t.integer  "state",            default: 0
     t.boolean  "hidden",           default: false

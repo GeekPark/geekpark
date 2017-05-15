@@ -13,8 +13,7 @@ module API::V1::Admin
     def_param_group :collection_params do
       param :title, String, required: true
       param :description, String
-      param :banner, String
-      param :banner_mobile, String
+      param :banner_id, Integer, desc: 'banner 圖片'
     end
 
     api :POST, '/admin/collections', 'Create a collection'
@@ -54,8 +53,7 @@ module API::V1::Admin
     def collection_params
       params.permit(:title,
                     :description,
-                    :banner,
-                    :banner_mobile)
+                    :banner_id)
     end
   end
 end
