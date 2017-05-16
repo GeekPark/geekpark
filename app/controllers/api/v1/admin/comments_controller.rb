@@ -4,10 +4,18 @@ module API::V1::Admin
     before_action :find_commentable, only: :index_for_commentable
     before_action find_record, only: %i(destroy set_spam unset_spam)
 
-    api :GET, '/admin/comments', 'List comments'
+    api :GET, '/admin/comments', 'List or smart filter on comments'
+    param :commentable_id,   Integer
+    param :commentable_type, %w(Post Ad)
+    param :content,          String
+    param :state,            %w(normal spam)
+    param :parent_id,        Integer
+    param :user_id,          Integer
     def index
+      comments = Comment.smart_filter(filter_params).new_to_old
+
       success(each_serializer: AdminCommentSerializer) do
-        paginated_with_meta Comment.all.new_to_old
+        paginated_with_meta comments
       end
     end
 
@@ -34,20 +42,6 @@ module API::V1::Admin
     def unset_spam
       @comment.normal!
       updated
-    end
-
-    api :GET, '/admin/comments/filter', 'Smart filter on comments'
-    param :commentable_id,   Integer
-    param :commentable_type, %w(Post Ad)
-    param :content,          String
-    param :state,            %w(normal spam)
-    param :parent_id,        Integer
-    param :user_id,          Integer
-    def filter
-      comments = Comment.smart_filter(filter_params)
-      success(each_serializer: AdminCommentSerializer) do
-        paginated_with_meta comments
-      end
     end
 
     private

@@ -6,7 +6,7 @@ module API::V1::Admin
 
     api :GET, '/admin/ads', 'List all ads'
     def index
-      success do
+      success(each_serializer: AdminAdSerializer) do
         paginated_with_meta Ad.all.new_to_old
       end
     end
