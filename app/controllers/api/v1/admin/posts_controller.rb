@@ -3,10 +3,17 @@ module API::V1::Admin
     resource_description { short '管理介面文章/視頻 API' }
     before_action find_record, only: %i(destroy show update publish)
 
-    api :GET, '/admin/posts', 'List posts with extra info'
+    api :GET, '/admin/posts', 'List or filter on posts'
+    param :title, String, desc: '标题'
+    param :state, String, desc: '状态 unpublished, published, closed'
     def index
+      posts = Post
+              .smart_filter(params.permit(:title, :state))
+              .includes(:column)
+              .new_to_old
+
       success(each_serializer: ::AdminShortPostSerializer) do
-        paginated_with_meta Post.all.includes(:column).new_to_old
+        paginated_with_meta posts
       end
     end
 
@@ -73,16 +80,6 @@ module API::V1::Admin
     def update
       @post.update_attributes!(post_params)
       updated
-    end
-
-    def filter
-      posts = Post
-              .smart_filter(params.permit(:title, :state))
-              .includes(:column)
-
-      success(each_serializer: ::AdminShortPostSerializer) do
-        paginated_with_meta posts
-      end
     end
 
     def destroy
