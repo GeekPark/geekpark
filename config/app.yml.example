@@ -1,5 +1,8 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
+  account_api_base: https://account.geekpark.net/api/v1/
+  account_csrs_key: "top secret"
+
   column_names:
     zaozhidao: '极客早知道'
     tushang: '图赏'
@@ -11,6 +14,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  account_api_base: http://localhost:3001/api/v1/
   cors_allowed_origins:
   - localhost:3000
 

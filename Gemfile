@@ -66,6 +66,9 @@ gem 'mini_magick'
 gem 'awesome_print'
 gem 'byebug', platform: :mri
 
+# for corss-site communication
+gem 'rest-client'
+
 group :development, :test do
   gem 'ffaker'
   gem 'factory_girl_rails'
