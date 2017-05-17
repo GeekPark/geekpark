@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include AccountAPIHelper
   include HasCurrentRoles
 
   protect_from_forgery with: :exception

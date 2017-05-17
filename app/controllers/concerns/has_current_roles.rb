@@ -6,8 +6,7 @@ module HasCurrentRoles
   end
 
   def current_roles
-    if Rails.env.development? || Rails.env.test? ||
-       Rails.env.production? # TODO: delete later
+    if Rails.env.development? || Rails.env.test?
       roles = params[:roles]&.split&.map(&:intern) || []
     else
       roles = current_user_roles || []
