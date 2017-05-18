@@ -97,6 +97,9 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+
+  # for faster migration from old website
+  gem 'bulk_insert'
 end
 
 group :test do
