@@ -54,9 +54,11 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.string   "title"
     t.string   "description"
     t.integer  "content_type"
+    t.integer  "banner_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.datetime "deleted_at"
+    t.index ["banner_id"], name: "index_columns_on_banner_id", using: :btree
     t.index ["content_type"], name: "index_columns_on_content_type", using: :btree
     t.index ["deleted_at"], name: "index_columns_on_deleted_at", using: :btree
     t.index ["title"], name: "index_columns_on_title", using: :btree
@@ -64,19 +66,22 @@ ActiveRecord::Schema.define(version: 20170410165313) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
-    t.integer  "user_id"
+    t.string   "commenter"
     t.integer  "state",            default: 0
+    t.integer  "upvote",           default: 0
+    t.integer  "depth",            default: 0
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.string   "author"
     t.integer  "parent_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.datetime "deleted_at"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+    t.index ["commenter"], name: "index_comments_on_commenter", using: :btree
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
     t.index ["state"], name: "index_comments_on_state", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "counts", force: :cascade do |t|
@@ -105,14 +110,17 @@ ActiveRecord::Schema.define(version: 20170410165313) do
     t.string   "source"
     t.string   "link"
     t.integer  "cover_id"
+    t.json     "provider"
     t.integer  "column_id"
     t.integer  "state",            default: 0
     t.boolean  "hidden",           default: false
     t.string   "tags",             default: [],                 array: true
+    t.string   "authors",          default: [],                 array: true
     t.datetime "published_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.datetime "deleted_at"
+    t.index ["authors"], name: "index_posts_on_authors", using: :btree
     t.index ["column_id"], name: "index_posts_on_column_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
     t.index ["hidden"], name: "index_posts_on_hidden", using: :btree
@@ -152,9 +160,11 @@ ActiveRecord::Schema.define(version: 20170410165313) do
   create_table "topics", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
+    t.integer  "banner_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "deleted_at"
+    t.index ["banner_id"], name: "index_topics_on_banner_id", using: :btree
     t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
     t.index ["title"], name: "index_topics_on_title", using: :btree
   end

@@ -6,12 +6,14 @@
 #  title        :string
 #  description  :string
 #  content_type :integer
+#  banner_id    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  deleted_at   :datetime
 #
 # Indexes
 #
+#  index_columns_on_banner_id     (banner_id)
 #  index_columns_on_content_type  (content_type)
 #  index_columns_on_deleted_at    (deleted_at)
 #  index_columns_on_title         (title)

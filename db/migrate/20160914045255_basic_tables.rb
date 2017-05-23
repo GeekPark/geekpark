@@ -24,12 +24,15 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :link
       t.integer :cover_id
 
+      t.json :provider
+
       t.references :column, index: true
 
       t.integer :state, index: true, default: 0
       t.boolean :hidden, index: true, default: false
 
-      t.string :tags, array: true, default: [], index: true
+      t.string :tags,    array: true, default: [], index: true
+      t.string :authors, array: true, default: [], index: true
 
       t.datetime :published_at
       t.timestamps
@@ -38,8 +41,11 @@ class BasicTables < ActiveRecord::Migration[5.0]
     create_table :comments do |t|
       t.string  :content
 
-      t.integer :user_id,   index: true
+      t.string  :commenter, index: true
       t.integer :state,     index: true, default: 0
+
+      t.integer :upvote,                 default: 0
+      t.integer :depth,                  default: 0
 
       t.string  :commentable_type
       t.integer :commentable_id
@@ -56,6 +62,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
 
       # video/article
       t.integer :content_type, index: true
+      t.integer :banner_id, index: true
 
       t.timestamps
     end
@@ -68,6 +75,8 @@ class BasicTables < ActiveRecord::Migration[5.0]
     create_table :topics do |t|
       t.string :title, index: true
       t.string :description
+
+      t.integer :banner_id, index: true
 
       t.timestamps
     end

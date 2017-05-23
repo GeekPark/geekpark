@@ -4,10 +4,13 @@
 #
 #  id               :integer          not null, primary key
 #  content          :string
-#  user_id          :integer
+#  commenter        :string
 #  state            :integer          default("normal")
+#  upvote           :integer          default(0)
+#  depth            :integer          default(0)
 #  commentable_type :string
 #  commentable_id   :integer
+#  author           :string
 #  parent_id        :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -16,10 +19,10 @@
 # Indexes
 #
 #  index_comments_on_commentable_type_and_commentable_id  (commentable_type,commentable_id)
+#  index_comments_on_commenter                            (commenter)
 #  index_comments_on_deleted_at                           (deleted_at)
 #  index_comments_on_parent_id                            (parent_id)
 #  index_comments_on_state                                (state)
-#  index_comments_on_user_id                              (user_id)
 #
 
 class Comment < ApplicationRecord

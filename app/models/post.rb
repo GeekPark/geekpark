@@ -12,10 +12,12 @@
 #  source           :string
 #  link             :string
 #  cover_id         :integer
+#  provider         :json
 #  column_id        :integer
 #  state            :integer          default("unpublished")
 #  hidden           :boolean          default(FALSE)
 #  tags             :string           default([]), is an Array
+#  authors          :string           default([]), is an Array
 #  published_at     :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -23,6 +25,7 @@
 #
 # Indexes
 #
+#  index_posts_on_authors     (authors)
 #  index_posts_on_column_id   (column_id)
 #  index_posts_on_deleted_at  (deleted_at)
 #  index_posts_on_hidden      (hidden)
