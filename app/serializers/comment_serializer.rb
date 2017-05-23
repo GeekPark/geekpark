@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  content          :string
-#  user_id          :integer
+#  commenter        :string
 #  state            :integer          default("normal")
 #  commentable_type :string
 #  commentable_id   :integer
@@ -23,5 +23,5 @@
 #
 
 class CommentSerializer < ApplicationSerializer
-  attributes :id, :content, :user_id, :parent_id, :created_at
+  attributes :id, :content, :commenter, :parent_id, :created_at
 end
