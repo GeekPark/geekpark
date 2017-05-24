@@ -68,23 +68,11 @@ class Post < ApplicationRecord
 
   enum state: [:unpublished, :published, :closed]
   enum content_type: [:html, :markdown, :plain]
-  enum post_type: [:text, :video]
+  enum post_type: [:text, :video, :geek_recommend]
 
   scope :homepage, -> { published }
   scope :with_tag, ->(tag) { where('? = ANY(tags)', tag) }
   scope :with_cover, -> { includes(:cover) }
-
-  def article?
-    !video?
-  end
-
-  def video?
-    post_type == :video
-  end
-
-  def cover_url
-    cover&.file&.url
-  end
 
   def content
     content_rendered || render_content
