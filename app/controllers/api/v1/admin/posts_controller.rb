@@ -102,6 +102,10 @@ module API::V1::Admin
                     :column_id,
                     :cover_id,
                     :author_ids,
+                    :video_provider,
+                    :video_id,
+                    :recommend_product_category,
+                    :recommend_related_post,
                     :source,
                     :state)
     end
