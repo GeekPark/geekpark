@@ -24,7 +24,7 @@ class BasicTables < ActiveRecord::Migration[5.0]
       t.string :link
       t.integer :cover_id
 
-      t.json :provider
+      t.json :extra
 
       t.references :column, index: true
 

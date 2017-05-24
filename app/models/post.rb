@@ -58,6 +58,12 @@ class Post < ApplicationRecord
   has_many :collections, through: :collection_items
   belongs_to :column
 
+  store_accessor :extra,
+                 :video_provider,
+                 :video_id,
+                 :recommend_related_post,
+                 :recommend_product_category
+
   image_field :cover
 
   before_save :render_content
