@@ -40,7 +40,8 @@ class PostSerializer < ApplicationSerializer
              :link,
              :tags,
              :published_at,
-             :extra
+             :extra,
+             :post_type
 
   has_one :column
 end

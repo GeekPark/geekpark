@@ -6,8 +6,12 @@ module API::V1::Admin
     api :GET, '/admin/posts', 'List or filter on posts'
     param :title, String, desc: '标题'
     param :state, String, desc: '状态 unpublished, published, closed'
+    param :post_type, %w(text video geek_recommend),
+          desc: 'post type',
+          required: true
     def index
       posts = Post
+              .where(post_type: params[:post_type] || :text)
               .smart_filter(params.permit(:title, :state))
               .includes(:column)
               .new_to_old
