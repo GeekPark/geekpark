@@ -79,7 +79,7 @@ set :bundle_without, nil
 #   }
 
 namespace :deploy do
-  before 'deploy:restart', 'puma:restart'
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
+  after  :finishing,    'puma:restart'
 end
