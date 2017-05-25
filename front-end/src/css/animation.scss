@@ -1,0 +1,11 @@
+@keyframes like {
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes gradient {
+  0% { background-position:0% 36% }
+  50% { background-position:100% 65% }
+  100% { background-position:0% 36% }
+}

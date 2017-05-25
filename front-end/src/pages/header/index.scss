@@ -1,0 +1,123 @@
+$height: 55px;
+
+@import "../../css/common.scss";
+
+@mixin link {
+    font-size: 1.4rem;
+    color: #fff;
+
+    &:hover {
+      @include animated;
+      color: $color_blue;
+    }
+}
+
+header {
+  background-color: #000;
+  display: block;
+  height: $height;
+}
+.header {
+  padding: 0 38px;
+  display: flex;
+  height: 100%;
+
+  color: #fff;
+
+  .left {
+    flex-basis: 200px;
+    text-align: left;
+  }
+
+  .middle {
+    flex-grow: 1;
+    min-width: 400px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .right {
+    flex-basis: 200px;
+    text-align: right;
+    line-height: $height;
+    vertical-align: middle;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+      width: 182px;
+      height: 35px;
+    }
+
+    @media screen and (max-width: 721px) {
+      & {
+        display: none;
+      }
+    }
+  }
+
+
+  .nav {
+    display: inline-block;
+
+    .nav-link {
+      @include link;
+      padding: 10px 15px 15px 15px;
+      position: relative;
+      line-height: 30px;
+      display: inline-block;
+      font-weight: bold;
+      vertical-align: middle;
+
+      &.active, &:hover {
+        color: $color_blue;
+        @include animated;
+        &:after {
+          opacity: 1;
+        }
+      }
+
+      &:after {
+        @include animated;
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        opacity: 0;
+        background-color: $color_blue;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+
+    @media screen and (max-width: 721px) {
+      & {
+        display: none;
+      }
+    }
+
+    .iconfont {
+      font-size: 2rem;
+      margin-right: 8px;
+    }
+
+    .login-btn a {
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      @include link;
+      height: 100%;
+    }
+  }
+}

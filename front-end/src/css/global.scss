@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+html, body {
+  background-color: #f9f9f9;
+}
+
+iframe {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+
+  :focus {
+    outline: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.body-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: 1300px) {
+    width: 95%;
+  }
+
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+}

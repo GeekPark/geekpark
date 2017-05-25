@@ -1,0 +1,278 @@
+.w50p {
+  width: 50%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.block {
+  display: block;
+}
+
+.mt-global {
+  margin-top: $global-margin;
+}
+
+.mb-global {
+  margin-bottom: $global-margin;
+}
+
+.static {
+  position: static;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.dib {
+  display: inline-block;
+}
+
+img.js-lazy {
+  visibility: hidden;
+
+  &.loaded {
+    visibility: visible;
+  }
+}
+
+@mixin animated {
+  transition: all .2s;
+}
+
+@mixin dib-middle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dib-middle {
+  @include dib-middle;
+}
+
+.dib-top {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin trs {
+  transition: all $trans-dura;
+}
+
+@mixin bgs($w, $h, $zoom: 1) {
+  background-size: $w / $zoom $h / $zoom;
+}
+
+@mixin a-vertial-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin centerTransform($trs) {
+  transform: translate(-50%, -50%) $trs;
+  transform: translate3d(-50%, -50%, 0) $trs;
+}
+
+@mixin a-center {
+  @include a-vertial-center;
+  left: 50%;
+  transform: translate(-50%, -50%); // fallback none 3d support
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.a-center {
+  @include a-center;
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-scrollbar-track;
+    border-radius: 5px;
+  }
+}
+
+@mixin hover-filter {
+  transition: all $trans-dura;
+
+  &:hover {
+    filter: brightness(102%) contrast(115%);
+  }
+}
+
+@mixin responsive-img($ratio: $image-ratio) {
+  .responsive-img {
+    overflow: hidden;
+    height: 0;
+    padding-bottom: $image-ratio;
+    position: relative;
+    background-color: #f3f3f3;
+    backface-visibility: hidden;
+
+    .img-cover {
+      @include a-center;
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+    }
+
+    &.hover.img-cover {
+      @include hover-filter;
+    }
+  }
+}
+
+@include responsive-img;
+
+@mixin border-bottom ($showLast: false) {
+  border-bottom: 1px solid $color-border-gray;
+
+  @if $showLast == false {
+    &:last-child {
+      border: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+@mixin mutileLineEllipsis($line, $lh) {
+  // fallback for non-webkit
+  display: block;
+  display: -webkit-box;
+  line-height: $lh;
+  max-height: $lh * $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+@mixin category-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  background-color: $color-default-tag;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+@mixin mediaMax($w) {
+  @media screen and (max-width: $w) {
+    @content;
+  }
+}
+
+@mixin mediaMin($w) {
+  @media screen and (min-width: $w) {
+    @content;
+  }
+}
+
+
+@mixin triangleDown($color: #fff) {
+  &::after {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    bottom: 0;
+    display: block;
+    content: '';
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $color;
+  }
+}
+
+.triangle-down {
+  @include triangleDown;
+}
+
+.hidden-ipad {
+  @include mediaMax(1024px) {
+    display: none;
+  }
+}
+
+.player-btn {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  line-height: 40px;
+  color: #fff;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: 1.2rem;
+
+  .icon-player {
+    font-size: 1.4rem;
+  }
+}
+
+$icon-video-w: 45px;
+
+.icon-video {
+  display: inline-block;
+  width: $icon-video-w;
+  height: $icon-video-w;
+  background-image: asset-url('icon-video.png');
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  // filter: grayscale(0.5);
+
+  &.icon-youku {
+    background-position: 0;
+  }
+
+  &.icon-qqvideo {
+    background-position: -$icon-video-w  0;
+  }
+
+  &.icon-sohu {
+    background-position: -$icon-video-w * 2  0;
+  }
+
+  &.icon-tudou {
+    background-position: -$icon-video-w * 3  0;
+  }
+
+  &.icon-iqiyi {
+    background-position: -$icon-video-w * 4  0;
+  }
+
+  &.icon-meipai {
+    background-position: -$icon-video-w * 5  0;
+  }
+}
+
