@@ -11,5 +11,10 @@ module API::V1::Admin
         }
       end
     end
+
+    api :GET, '/admin/states', 'Get current user\' info'
+    def info
+      success current_user_state
+    end
   end
 end
