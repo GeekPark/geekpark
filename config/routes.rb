@@ -7,7 +7,13 @@ Rails.application.routes.draw do
       resources :collections, only: [:index, :show]
 
       resources :posts, only: [:index, :show] do
-        resources :comments, only: [:index, :create]
+        post 'like', to: 'posts#like'
+        post 'unlike', to: 'posts#unlike'
+
+        resources :comments, only: [:index, :create] do
+          post 'like', to: 'comments#like'
+          post 'unlike', to: 'comments#unlike'
+        end
         get 'by-tag/:tag', to: 'posts#index_by_tag', on: :collection
       end
       resources :columns, only: [:index, :show]

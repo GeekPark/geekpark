@@ -38,8 +38,11 @@ class Post < ApplicationRecord
   include SmartFilterable
   include Countable
   include ProcessPostMeta
+  include Likeable
 
   acts_as_paranoid
+
+  add_likeable_for
 
   add_instance_counter_for :click
   add_instance_counter_for :publishing

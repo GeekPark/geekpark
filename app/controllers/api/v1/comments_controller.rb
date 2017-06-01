@@ -2,6 +2,7 @@ module API::V1
   class CommentsController < APIController
     resource_description { short '評論' }
     before_action :find_commentable
+    before_action :find_comment, only: %i(like unlike)
 
     api :GET, '/(posts|ads)/:id/comments',
         'List all comments under given post or ad'
@@ -21,11 +22,29 @@ module API::V1
       created(comment)
     end
 
+    api :POST, '/posts/:post_id/comments/:comment_id/like', 'like specfic comment'
+    param :post_id, Integer, desc: 'post id', required: true
+    param :comment_id, Integer, desc: 'comment id', required: true
+    def like
+      render json: @comment.like(current_user_id)
+    end
+
+    api :POST, '/posts/:post_id/comments/:comment_id/unlike', 'unlike specfic comment'
+    param :post_id, Integer, desc: 'post id', required: true
+    param :comment_id, Integer, desc: 'comment id', required: true
+    def unlike
+      render json: @comment.unlike(current_user_id)
+    end
+
     private
 
     def find_commentable
       @commentable = Post.find_by(id: params[:post_id]) ||
                      Ad.  find_by(id: params[:ad_id])
+    end
+
+    def find_comment
+      @comment = Comment.find_by(id: params[:comment_id])
     end
 
     def comment_params

@@ -38,8 +38,13 @@ class PostSerializer < ApplicationSerializer
              :cover_url,
              :source,
              :link,
+             :liked,
              :tags,
              :published_at
+
+  def liked
+    Like.where(user_id: @instance_options[:user_id], target: object).empty?
+  end
 
   has_one :column
 end
