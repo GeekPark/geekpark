@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531061242) do
+ActiveRecord::Schema.define(version: 20170601021434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20170531061242) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.datetime "deleted_at"
+    t.integer  "views"
+    t.boolean  "recommended",      default: false
     t.index ["authors"], name: "index_posts_on_authors", using: :btree
     t.index ["column_id"], name: "index_posts_on_column_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree

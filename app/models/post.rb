@@ -22,6 +22,8 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  deleted_at       :datetime
+#  views            :integer
+#  recommended      :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -117,6 +119,12 @@ class Post < ApplicationRecord
 
   def close!
     self.state = :closed
+    save
+  end
+
+  def increment(by = 1)
+    self.views ||= 0
+    self.views += by
     save
   end
 

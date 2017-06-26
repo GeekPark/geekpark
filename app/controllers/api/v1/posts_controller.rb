@@ -10,6 +10,7 @@ module API::V1
 
     api :GET, '/posts/:id', 'Show specific post'
     def show
+      @post.increment
       success(serializer: ::PostSerializer, user_id: current_user_id) do
         @post
       end
