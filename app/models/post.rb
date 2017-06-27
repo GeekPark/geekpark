@@ -44,7 +44,7 @@ class Post < ApplicationRecord
 
   acts_as_paranoid
 
-  add_likeable_for
+  add_likeable
 
   add_instance_counter_for :click
   add_instance_counter_for :publishing
@@ -126,6 +126,10 @@ class Post < ApplicationRecord
     self.views ||= 0
     self.views += by
     save
+  end
+
+  def toggle_recommended!
+    update(recommended: !recommended)
   end
 
   private

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :posts do
           patch :publish, :draft, :close
+          post :toggle_recommended
           get :filter, :today_statistics, on: :collection
 
           get :comments, to: 'comments#index_for_commentable'

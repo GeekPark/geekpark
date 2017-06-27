@@ -42,9 +42,5 @@ class PostSerializer < ApplicationSerializer
              :tags,
              :published_at
 
-  def liked
-    Like.where(user_id: @instance_options[:user_id], target: object).empty?
-  end
-
   has_one :column
 end

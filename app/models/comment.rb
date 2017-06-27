@@ -29,7 +29,7 @@ class Comment < ApplicationRecord
   include Likeable
   acts_as_paranoid
 
-  add_likeable_for
+  add_likeable
 
   belongs_to :commentable, polymorphic: true
 

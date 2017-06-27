@@ -11,9 +11,7 @@ module API::V1
     api :GET, '/posts/:id', 'Show specific post'
     def show
       @post.increment
-      success(serializer: ::PostSerializer, user_id: current_user_id) do
-        @post
-      end
+      success(@post, serializer: ::PostSerializer, user_id: current_user_id)
     end
 
     api :GET, '/posts/hot_in_week', 'Show a list of hot posts in recent 7-day'
@@ -29,12 +27,20 @@ module API::V1
 
     api :POST, '/posts/:id/like', 'Like specfic post'
     def like
-      render json: @post.like(current_user_id)
+      if @post.like(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already liked' }
+      end 
     end
 
     api :POST, '/posts/:id/unlike', 'Unlike specfic post'
     def unlike
-      render json: @post.unlike(current_user_id)
+      if @post.unlike(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already liked' }
+      end
     end
   end
 end

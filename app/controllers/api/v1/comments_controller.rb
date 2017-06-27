@@ -7,7 +7,7 @@ module API::V1
     api :GET, '/(posts|ads)/:id/comments',
         'List all comments under given post or ad'
     def index
-      success do
+      success(user_id: current_user_id) do
         paginated(@commentable.comments.normal)
       end
     end
@@ -26,14 +26,22 @@ module API::V1
     param :post_id, Integer, desc: 'post id', required: true
     param :comment_id, Integer, desc: 'comment id', required: true
     def like
-      render json: @comment.like(current_user_id)
+      if @comment.like(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already liked' }
+      end
     end
 
     api :POST, '/posts/:post_id/comments/:comment_id/unlike', 'unlike specfic comment'
     param :post_id, Integer, desc: 'post id', required: true
     param :comment_id, Integer, desc: 'comment id', required: true
     def unlike
-      render json: @comment.unlike(current_user_id)
+      if @comment.unlike(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already unliked' }
+      end
     end
 
     private

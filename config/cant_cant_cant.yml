@@ -111,6 +111,8 @@ admin: &admin
   api/v1/admin/collections#reset_members: deny
   api/v1/admin/collections#update: allow
 
+  api/v1/admin/users#info: allow
+
 dev: &dev
   <<: *all
   <<: *visitor
