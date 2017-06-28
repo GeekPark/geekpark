@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, except: [:new, :edit] do
       root to: 'home#web_index'
+     
+      resources :ads, only: [:index]
+
       resources :collections, only: [:index, :show]
 
       resources :posts, only: [:index, :show] do

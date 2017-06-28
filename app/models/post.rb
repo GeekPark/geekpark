@@ -128,8 +128,12 @@ class Post < ApplicationRecord
     save
   end
 
-  def toggle_recommended!
-    update(recommended: !recommended)
+  def img_count
+    Nokogiri::HTML(content_rendered).css('img').length
+  end
+
+  def h2_list
+    Nokogiri::HTML(content_rendered).css('h2').map(&:text)
   end
 
   private

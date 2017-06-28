@@ -64,7 +64,7 @@ module API::V1::Admin
 
     api :POST, '/admin/posts/:post_id/toggle_recommended', 'toggle推荐文章'
     def toggle_recommended
-      @post.toggle_recommended!
+      @post.toggle!(:recommended)
       updated
     end
 

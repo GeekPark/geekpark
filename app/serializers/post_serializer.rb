@@ -40,7 +40,10 @@ class PostSerializer < ApplicationSerializer
              :link,
              :liked,
              :tags,
-             :published_at
+             :published_at,
+             :like_count,
+             :img_count,
+             :h2_list
 
   has_one :column
 end

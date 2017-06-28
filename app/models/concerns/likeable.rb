@@ -8,14 +8,14 @@ module Likeable
       define_method 'like' do |user_id|
         unless find_like(user_id)
           Like.create(user_id: user_id, target: self)
-          return true
+          true
         end
       end
 
       define_method 'unlike' do |user_id|
         if find_like(user_id)
           find_like(user_id).destroy
-          return true
+          true
         end
       end
 
@@ -27,5 +27,9 @@ module Likeable
 
   def liked
     !!(Like.find_by(user_id: @instance_options[:user_id], target: object))
+  end
+
+  def like_count
+    Like.where(target: object).count
   end
 end

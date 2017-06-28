@@ -23,5 +23,11 @@
 #
 
 class CommentSerializer < ApplicationSerializer
-  attributes :id, :content, :commenter, :parent_id, :created_at, :liked
+  attributes :id,
+             :content,
+             :commenter,
+             :parent_id,
+             :created_at,
+             :liked,
+             :like_count
 end
