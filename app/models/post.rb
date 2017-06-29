@@ -22,6 +22,8 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  deleted_at       :datetime
+#  views            :integer
+#  recommended      :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -38,8 +40,13 @@ class Post < ApplicationRecord
   include SmartFilterable
   include Countable
   include ProcessPostMeta
+  include Likeable
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   acts_as_paranoid
+
+  add_likeable
 
   add_instance_counter_for :click
   add_instance_counter_for :publishing
@@ -73,6 +80,11 @@ class Post < ApplicationRecord
   scope :homepage, -> { published }
   scope :with_tag, ->(tag) { where('? = ANY(tags)', tag) }
   scope :with_cover, -> { includes(:cover) }
+
+  mapping do
+    indexes :title,            type: :string, analyzer: :smartcn
+    indexes :content_rendered, type: :string, analyzer: :smartcn
+  end
 
   def article?
     !video?
@@ -115,6 +127,41 @@ class Post < ApplicationRecord
   def close!
     self.state = :closed
     save
+  end
+
+  def increment(by = 1)
+    self.views ||= 0
+    self.views += by
+    save
+  end
+
+  def img_count
+    Nokogiri::HTML(content_rendered).css('img').length
+  end
+
+  def h2_list
+    Nokogiri::HTML(content_rendered).css('h2').map(&:text)
+  end
+
+  def related_posts(size = 4)
+    opts = {
+      query: {
+        more_like_this: {
+          fields: [:title, :content_rendered],
+          docs: [
+            {
+              _index: self.class.index_name,
+              _type: self.class.document_type,
+              _id: id
+            }
+          ],
+          min_term_freq: 2,
+          min_doc_freq: 5
+        }
+      },
+      size: size
+    }
+    self.class.__elasticsearch__.search(opts).records.to_a
   end
 
   private

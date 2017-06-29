@@ -10,7 +10,6 @@
 #  depth            :integer          default(0)
 #  commentable_type :string
 #  commentable_id   :integer
-#  author           :string
 #  parent_id        :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -27,7 +26,10 @@
 
 class Comment < ApplicationRecord
   include SmartFilterable
+  include Likeable
   acts_as_paranoid
+
+  add_likeable
 
   belongs_to :commentable, polymorphic: true
 

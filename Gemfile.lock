@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/seuros/capistrano-puma.git
-  revision: 1d7cca2e431c23943ebcde19588169ed12025833
+  remote: git://github.com/seuros/capistrano-puma.git
+  revision: 00708fa18a029cb34f46aef60f920106c0c00107
   specs:
     capistrano3-puma (3.1.0)
       capistrano (~> 3.7)
@@ -8,7 +8,7 @@ GIT
       puma (~> 3.4)
 
 GIT
-  remote: https://github.com/shouya/cant_cant_cant.git
+  remote: git://github.com/shouya/cant_cant_cant.git
   revision: 2dc86d3238febe461cfea48b8eeef38d0482c6d5
   specs:
     cant_cant_cant (0.1.10)
@@ -114,6 +114,19 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-model (5.0.1)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.0.1)
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     enumerize (2.1.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -123,6 +136,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faraday (0.12.1)
+      multipart-post (>= 1.2, < 3)
     ffaker (2.5.0)
     ffi (1.9.18)
     formatador (0.2.5)
@@ -142,6 +157,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hashie (3.5.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
@@ -186,6 +202,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -359,6 +376,8 @@ DEPENDENCIES
   carrierwave
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
+  elasticsearch-model
+  elasticsearch-rails
   enumerize
   factory_girl_rails
   ffaker
@@ -396,4 +415,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

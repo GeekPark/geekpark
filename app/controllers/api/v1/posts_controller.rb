@@ -1,7 +1,7 @@
 module API::V1
   class PostsController < APIController
     resource_description { short '文章/視頻 API' }
-    before_action find_record, only: :show
+    before_action find_record, only: %i(show like unlike)
 
     api :GET, '/posts', 'List all posts'
     def index
@@ -10,7 +10,8 @@ module API::V1
 
     api :GET, '/posts/:id', 'Show specific post'
     def show
-      success(@post)
+      @post.increment
+      success(@post, serializer: ::PostSerializer, user_id: current_user_id)
     end
 
     api :GET, '/posts/hot_in_week', 'Show a list of hot posts in recent 7-day'
@@ -22,6 +23,24 @@ module API::V1
     def index_by_tag
       tag = params[:tag]
       success { Post.with_tag(tag).published }
+    end
+
+    api :POST, '/posts/:id/like', 'Like specfic post'
+    def like
+      if @post.like(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already liked' }
+      end 
+    end
+
+    api :POST, '/posts/:id/unlike', 'Unlike specfic post'
+    def unlike
+      if @post.unlike(current_user_id)
+        render json: { message: 'success' }
+      else
+        render json: { error: 'already liked' }
+      end
     end
   end
 end

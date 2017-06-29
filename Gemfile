@@ -69,6 +69,10 @@ gem 'byebug', platform: :mri
 # for corss-site communication
 gem 'rest-client'
 
+# Elasticsearch
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 group :development, :test do
   gem 'ffaker'
   gem 'factory_girl_rails'

@@ -1,7 +1,7 @@
 module API::V1::Admin
   class PostsController < AdminController
     resource_description { short '管理介面文章/視頻 API' }
-    before_action find_record, only: %i(destroy show update publish)
+    before_action find_record, only: %i(destroy show update publish toggle_recommended)
 
     api :GET, '/admin/posts', 'List or filter on posts'
     param :title, String, desc: '标题'
@@ -59,6 +59,12 @@ module API::V1::Admin
     api :PATCH, '/admin/posts/:id/unpublish', 'Un-publish a post'
     def unpublish
       @post.unpublish!
+      updated
+    end
+
+    api :POST, '/admin/posts/:post_id/toggle_recommended', 'toggle推荐文章'
+    def toggle_recommended
+      @post.toggle!(:recommended)
       updated
     end
 

@@ -4,10 +4,19 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, except: [:new, :edit] do
       root to: 'home#web_index'
+     
+      resources :ads, only: [:index]
+
       resources :collections, only: [:index, :show]
 
       resources :posts, only: [:index, :show] do
-        resources :comments, only: [:index, :create]
+        post 'like', to: 'posts#like'
+        post 'unlike', to: 'posts#unlike'
+
+        resources :comments, only: [:index, :create] do
+          post 'like', to: 'comments#like'
+          post 'unlike', to: 'comments#unlike'
+        end
         get 'by-tag/:tag', to: 'posts#index_by_tag', on: :collection
       end
       resources :columns, only: [:index, :show]
@@ -15,6 +24,7 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :posts do
           patch :publish, :draft, :close
+          post :toggle_recommended
           get :filter, :today_statistics, on: :collection
 
           get :comments, to: 'comments#index_for_commentable'
@@ -22,6 +32,7 @@ Rails.application.routes.draw do
 
         get 'tags', to: 'tags#index'
         get 'permissions', to: 'users#permissions'
+        get 'info', to: 'users#info'
 
         resources :ads do
           get :comments, to: 'comments#index_for_commentable'
